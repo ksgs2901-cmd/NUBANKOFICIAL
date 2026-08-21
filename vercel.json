@@ -1,0 +1,12 @@
+{
+  "outputDirectory": "public",
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)\\.(js|css|woff2|woff|ttf|eot|png|jpg|jpeg|webp|svg|mp4)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ]
+}

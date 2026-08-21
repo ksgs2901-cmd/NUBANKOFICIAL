@@ -1,0 +1,627 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=AW-17821524326"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+  
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+  
+        gtag('js', new Date());
+
+        gtag('config', 'AW-17821524326');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Processando…</title>
+
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #0b1220;
+            --muted: #5b6b82;
+            --line: #e6edf5;
+            --soft: #f6f8fc;
+            --accent: #6d28d9;
+            --radius: 18px;
+            --shadow: 0 10px 28px rgba(15, 23, 42, .08);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .wrap {
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 18px 16px 96px;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Ticket header */
+        .ticketTop {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+            padding-top: 4px;
+        }
+
+        .seal {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: var(--soft);
+            color: var(--muted);
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .sealIcon {
+            width: 18px;
+            height: 18px;
+            border-radius: 999px;
+            background: rgba(109, 40, 217, .14);
+            border: 1px solid rgba(109, 40, 217, .25);
+            display: grid;
+            place-items: center;
+            flex: 0 0 auto;
+        }
+
+        .sealDot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: rgba(109, 40, 217, .35);
+            box-shadow: 0 0 0 6px rgba(109, 40, 217, .08);
+            animation: pulse 1.2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1
+            }
+
+            50% {
+                transform: scale(1.12);
+                opacity: .85
+            }
+        }
+
+        /* Ticket body */
+        .ticket {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: #fff;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .ticketHeader {
+            padding: 14px;
+            border-bottom: 1px dashed var(--line);
+            background:
+                radial-gradient(circle at 20% 20%, rgba(109, 40, 217, .12), transparent 48%),
+                linear-gradient(#fff, #fff);
+            display: grid;
+            gap: 8px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 20px;
+            line-height: 1.15;
+            font-weight: 900;
+            letter-spacing: .1px;
+        }
+
+        .sub {
+            margin: 0;
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.35;
+        }
+
+        .summary {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 2px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: var(--soft);
+            color: var(--muted);
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .pill strong {
+            color: var(--text);
+            font-weight: 900
+        }
+
+        /* Progress rail */
+        .ticketBody {
+            padding: 14px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .progressRow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .statusText {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 900;
+        }
+
+        .pct {
+            font-size: 13px;
+            font-weight: 900;
+            color: var(--text);
+            padding: 6px 10px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: var(--soft);
+            white-space: nowrap;
+        }
+
+        .rail {
+            height: 10px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, .08);
+            border: 1px solid rgba(230, 237, 245, .9);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .rail>i {
+            display: block;
+            height: 100%;
+            width: 0%;
+            background: var(--accent);
+            border-radius: 999px;
+            transition: width .28s ease;
+        }
+
+        .meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* Steps list (compact) */
+        .steps {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 8px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 10px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: #fff;
+        }
+
+        .badgeStep {
+            width: 20px;
+            height: 20px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(15, 23, 42, .06);
+            display: grid;
+            place-items: center;
+            flex: 0 0 auto;
+            font-size: 12px;
+            color: var(--muted);
+            font-weight: 900;
+        }
+
+        .step.on {
+            border-color: rgba(109, 40, 217, .28);
+            background: rgba(109, 40, 217, .06);
+        }
+
+        .step.on .badgeStep {
+            border-color: rgba(109, 40, 217, .28);
+            background: rgba(109, 40, 217, .14);
+            color: #2a174a;
+        }
+
+        .step.done {
+            border-color: rgba(109, 40, 217, .28);
+            background: #fff;
+        }
+
+        .step.done .badgeStep {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .stepTxt {
+            min-width: 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .stepTxt strong {
+            font-size: 13px;
+            font-weight: 900;
+            color: var(--text);
+        }
+
+        .stepTxt em {
+            font-style: normal;
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.25;
+        }
+
+        .hint {
+            margin: 0;
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.35;
+        }
+
+        /* Bottom CTA */
+        .bottom {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, .95);
+            border-top: 1px solid var(--line);
+            backdrop-filter: blur(10px);
+            padding: 12px 14px;
+            z-index: 20;
+        }
+
+        .bottomInner {
+            max-width: 420px;
+            margin: 0 auto;
+            width: 100%
+        }
+
+        .cta {
+            display: block;
+            width: 100%;
+            padding: 16px 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 900;
+            border: 1px solid var(--line);
+            background: #fff;
+            color: var(--muted);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: .22s ease;
+            pointer-events: none;
+        }
+
+        .cta.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        .ctaSub {
+            margin-top: 8px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* Overlay */
+        #overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, .96);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: .2s ease;
+            padding: 18px;
+            z-index: 50;
+        }
+
+        #overlay.show {
+            opacity: 1;
+            visibility: visible
+        }
+
+        .overlayBox {
+            width: 100%;
+            max-width: 340px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 14px;
+            text-align: center;
+            background: #fff;
+            box-shadow: var(--shadow);
+        }
+
+        .spinner {
+            width: 22px;
+            height: 22px;
+            border-radius: 999px;
+            border: 2px solid #e5e7eb;
+            border-top-color: var(--accent);
+            margin: 0 auto 10px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .overlayBox p {
+            margin: 0;
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+                animation: none !important
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap" aria-live="polite">
+        <div class="ticketTop">
+            <div class="seal" id="sessionPill">
+                <span class="sealIcon" aria-hidden="true"><span class="sealDot"></span></span>
+                Sessão: —
+            </div>
+            <div class="seal" id="topState">Em processamento</div>
+        </div>
+
+        <section class="ticket" aria-label="Processo">
+            <div class="ticketHeader">
+                <h1 id="headline">Analisando informações</h1>
+                <p class="sub" id="desc">Estamos confirmando alguns detalhes. Isso costuma levar poucos segundos.</p>
+
+                <div class="summary">
+                    <div class="pill">Etapa: <strong id="miniRight">1/4</strong></div>
+                    <div class="pill">Progresso: <strong id="pctTop">0%</strong></div>
+                </div>
+            </div>
+
+            <div class="ticketBody">
+                <div class="progressRow">
+                    <p class="statusText" id="statusText">Iniciando…</p>
+                    <div class="pct" id="pct">0%</div>
+                </div>
+
+                <div class="rail" aria-label="Progresso">
+                    <i id="railFill"></i>
+                </div>
+
+                <div class="meta">
+                    <span id="eta">Aguarde…</span>
+                    <span id="metaRight">Etapa 1/4</span>
+                </div>
+
+                <ul class="steps" id="steps" aria-label="Etapas do processo">
+                    <li class="step on" data-i="0">
+                        <div class="badgeStep">1</div>
+                        <div class="stepTxt">
+                            <strong>Validando dados</strong>
+                            <em>Checando informações básicas.</em>
+                        </div>
+                    </li>
+                    <li class="step" data-i="1">
+                        <div class="badgeStep">2</div>
+                        <div class="stepTxt">
+                            <strong>Conferindo detalhes</strong>
+                            <em>Verificando consistência dos dados.</em>
+                        </div>
+                    </li>
+                    <li class="step" data-i="2">
+                        <div class="badgeStep">3</div>
+                        <div class="stepTxt">
+                            <strong>Preparando resultado</strong>
+                            <em>Organizando as próximas etapas.</em>
+                        </div>
+                    </li>
+                    <li class="step" data-i="3">
+                        <div class="badgeStep">4</div>
+                        <div class="stepTxt">
+                            <strong>Finalizando</strong>
+                            <em>Últimos ajustes antes de continuar.</em>
+                        </div>
+                    </li>
+                </ul>
+
+                <p class="hint" id="hint">O botão de continuar será liberado automaticamente ao concluir.</p>
+            </div>
+        </section>
+    </main>
+
+    <div class="bottom">
+        <div class="bottomInner">
+            <a href="/01" id="btn" class="cta">Continuar</a>
+            <div class="ctaSub" id="ctaSub">Disponível após finalizar.</div>
+        </div>
+    </div>
+
+    <div id="overlay" aria-hidden="true">
+        <div class="overlayBox" role="dialog" aria-modal="true">
+            <div class="spinner" aria-hidden="true"></div>
+            <p>Redirecionando…</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let percent = 0;
+
+            const btn = document.getElementById("btn");
+            const overlay = document.getElementById("overlay");
+
+            const pct = document.getElementById("pct");
+            const pctTop = document.getElementById("pctTop");
+            const statusText = document.getElementById("statusText");
+            const headline = document.getElementById("headline");
+            const desc = document.getElementById("desc");
+            const topState = document.getElementById("topState");
+
+            const miniRight = document.getElementById("miniRight");
+            const metaRight = document.getElementById("metaRight");
+            const eta = document.getElementById("eta");
+
+            const hint = document.getElementById("hint");
+            const ctaSub = document.getElementById("ctaSub");
+            const sessionPill = document.getElementById("sessionPill");
+
+            const railFill = document.getElementById("railFill");
+            const steps = Array.from(document.querySelectorAll(".step"));
+
+            // Sessão (visual)
+            const sid = Math.random().toString(16).slice(2, 8).toUpperCase();
+            sessionPill.innerHTML =
+                '<span class="sealIcon" aria-hidden="true"><span class="sealDot"></span></span> Sessão: ' + sid;
+
+            function msg(p) {
+                if (p < 25) return ["Validando dados…", 0, "Etapa inicial"];
+                if (p < 50) return ["Conferindo detalhes…", 1, "Organizando…"];
+                if (p < 75) return ["Preparando resultado…", 2, "Sincronizando…"];
+                if (p < 95) return ["Finalizando…", 3, "Ajustes finais"];
+                return ["Quase pronto…", 3, "Concluindo…"];
+            }
+
+            function setSteps(active) {
+                steps.forEach((el, i) => {
+                    el.classList.toggle("on", i === active);
+                    el.classList.toggle("done", i < active);
+                });
+            }
+
+            function setRail(p) {
+                const clamped = Math.max(0, Math.min(100, p));
+                railFill.style.width = clamped + "%";
+            }
+
+            setSteps(0);
+            setRail(0);
+
+            const timer = setInterval(function () {
+                percent++;
+
+                const ptxt = percent + "%";
+                pct.textContent = ptxt;
+                pctTop.textContent = ptxt;
+
+                const [m, step, etaMsg] = msg(percent);
+                statusText.textContent = m;
+                eta.textContent = etaMsg;
+
+                miniRight.textContent = (step + 1) + "/4";
+                metaRight.textContent = "Etapa " + (step + 1) + "/4";
+
+                setSteps(step);
+                setRail(percent);
+
+                topState.textContent = "Em processamento";
+                desc.textContent = "Estamos confirmando alguns detalhes. Isso costuma levar poucos segundos.";
+
+                if (percent >= 100) {
+                    clearInterval(timer);
+
+                    pct.textContent = "100%";
+                    pctTop.textContent = "100%";
+
+                    headline.textContent = "Concluído";
+                    topState.textContent = "Concluído";
+                    statusText.textContent = "Tudo pronto";
+                    desc.textContent = "Você pode continuar.";
+                    eta.textContent = "Pronto";
+                    metaRight.textContent = "Concluído";
+
+                    hint.textContent = "Tudo certo. Toque em Continuar.";
+                    ctaSub.textContent = "Toque para continuar.";
+
+                    setSteps(3);
+                    steps.forEach(el => { el.classList.remove("on"); el.classList.add("done"); });
+                    setRail(100);
+
+                    btn.classList.add("show");
+                }
+            }, 24);
+
+            btn.addEventListener("click", function (e) {
+                e.preventDefault();
+                overlay.classList.add("show");
+
+                setTimeout(function () {
+                    window.location.href = btn.href + window.location.search;
+                }, 1000);
+            });
+        });
+    </script>
+
+
+
+</body></html>

